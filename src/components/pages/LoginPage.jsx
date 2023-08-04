@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-const Login = () => {
+const LoginPage = () => {
+  // state
   const [prenom, setPrenom] = useState("");
 
-  //   comportement
+  //   comportements
   const handleSubmit = (e) => {
     e.preventDefault();
     alert(`Bonjour ${prenom}`);
@@ -15,16 +16,15 @@ const Login = () => {
 
   return (
     <div>
-      <h1>
-        Bienvenue chez nous ! <br />
-        <span>Connectez-vous</span>
-      </h1>
+      <h1>Bienvenue chez nous !</h1>
+      <br />
+      <h2>Connectez-vous</h2>
       <form action="#" onSubmit={handleSubmit}>
         <input
           value={prenom}
           type="text"
           placeholder="entrer votre prénom..."
-          required={true}
+          required
           onChange={handleChange}
         />
         <button type="submit">Accédez à votre espace</button>
@@ -33,4 +33,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;
