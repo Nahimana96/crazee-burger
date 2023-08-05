@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Navigate } from "react-router-dom";
 
 const LoginForm = () => {
   // state
@@ -7,7 +8,8 @@ const LoginForm = () => {
   //   comportements
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`Bonjour ${prenom}`);
+    // alert(`Bonjour ${prenom}`);
+    <Navigate to={`/order/${prenom}`} />;
     setPrenom("");
   };
   const handleChange = (e) => {
