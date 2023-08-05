@@ -1,0 +1,12 @@
+import React from "react";
+
+const NotFound = () => {
+  return (
+    <div>
+      <h1>ErrorPage</h1>
+    </div>
+  );
+};
+
+export default NotFound;
+<h1>Not found</h1>;
