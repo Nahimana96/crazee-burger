@@ -1,13 +1,15 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   // state
   const [prenom, setPrenom] = useState("");
-
+  const navigate = useNavigate();
   //   comportements
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`Bonjour ${prenom}`);
+    // alert(`Bonjour ${prenom}`);
+    navigate(`/order/${prenom}`);
     setPrenom("");
   };
   const handleChange = (e) => {
