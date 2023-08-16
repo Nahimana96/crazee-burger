@@ -5,6 +5,7 @@ import { BsPersonCircle } from "react-icons/bs";
 import { theme } from "../../../theme";
 import { FaChevronRight } from "react-icons/fa";
 import TextInput from "../../reusable-ui/TextInput";
+import PrimaryButton from "../../reusable-ui/PrimaryButton";
 
 const LoginForm = () => {
   // state
@@ -38,9 +39,10 @@ const LoginForm = () => {
         required
       />
 
-      <button type="submit">
-        Accéder à mon espace <FaChevronRight />
-      </button>
+      <PrimaryButton
+        label={"Accéder à mon espace"}
+        Icone={<FaChevronRight className="icone" />}
+      />
     </LoginFormStyled>
   );
 };
@@ -65,27 +67,9 @@ const LoginFormStyled = styled.form`
     width: 100%;
     border: 1px solid #f56a2c;
   }
-  button {
-    padding: 18px;
-    border: 1px solid ${theme.colors.primary_burger};
-    color: ${theme.colors.white};
-    font-weight: ${theme.weights.bold};
-    background-color: ${theme.colors.primary_burger};
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    border-radius: 5px;
-    width: 100%;
-
-    &:hover {
-      color: ${theme.colors.primary_burger};
-      border: 1px solid ${theme.colors.primary_burger};
-      background-color: ${theme.colors.white};
-      transition: all 0.3s ease-in-out;
-    }
-    svg {
-      transform: translateY(25%);
-      margin-left: 10px;
-    }
+  .icone {
+    transform: translateY(25%);
+    margin-left: 10px;
   }
 `;
 

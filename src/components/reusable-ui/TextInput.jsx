@@ -18,7 +18,7 @@ const InputStyled = styled.div`
   width: 100%;
   margin-bottom: 18px;
   padding: 18px 20px;
-  border-radius: 5px;
+  border-radius: ${theme.borderRadius.round};
 
   .icon {
     color: ${theme.colors.greySemiDark};
@@ -33,7 +33,7 @@ const InputStyled = styled.div`
       outline: none;
     }
     &::placeholder {
-      color: #d3d3d3;
+      color: ${theme.colors.greyExtraLight};
     }
   }
 `;
