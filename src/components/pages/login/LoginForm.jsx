@@ -1,21 +1,23 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
-import { theme } from "../../../theme";
 import { BsPersonCircle } from "react-icons/bs";
+import { theme } from "../../../theme";
+
 import { FaChevronRight } from "react-icons/fa";
+import Input from "../../reusable-ui/Input";
 const LoginForm = () => {
   // state
-  const [prenom, setPrenom] = useState("");
+  const [inputValue, setInputValue] = useState("");
   const navigate = useNavigate();
   //   comportements
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate(`/order/${prenom}`);
-    setPrenom("");
+    navigate(`/order/${inputValue}`);
+    setInputValue("");
   };
   const handleChange = (e) => {
-    setPrenom(e.target.value);
+    setInputValue(e.target.value);
   };
 
   return (
@@ -24,21 +26,20 @@ const LoginForm = () => {
       <div className="orange-line"></div>
       <br />
       <h2>Connectez-vous</h2>
-      <div className="wrapper">
-        <div className="icon">
-          <BsPersonCircle />
-        </div>
-        <input
-          value={prenom}
-          type="text"
-          placeholder="Entrez votre prénom"
-          required
-          onChange={handleChange}
-        />
-      </div>
+      <Input
+        value={inputValue}
+        onChange={handleChange}
+        Icone={
+          <div className="icon">
+            <BsPersonCircle />
+          </div>
+        }
+        placeholder="Entrez votre prénom"
+        required
+      />
 
       <button type="submit">
-        Accédez à mon espace <FaChevronRight />
+        Accéder à mon espace <FaChevronRight />
       </button>
     </LoginFormStyled>
   );
@@ -99,21 +100,6 @@ const LoginFormStyled = styled.form`
     svg {
       transform: translateY(25%);
       margin-left: 10px;
-    }
-  }
-  .wrapper {
-    background-color: ${theme.colors.white};
-    width: 100%;
-    position: relative;
-    margin-bottom: 18px;
-    padding: 18px 0;
-
-    .icon {
-      position: absolute;
-      left: 34px;
-      top: 50%;
-      color: ${theme.colors.greySemiDark};
-      transform: translate(-50%, -50%);
     }
   }
 `;

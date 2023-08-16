@@ -1,7 +1,7 @@
 import React from "react";
 import LoginForm from "./LoginForm";
 import { styled } from "styled-components";
-import Logo from "../logo/Logo";
+import Logo from "../../reusable-ui/Logo";
 import { theme } from "../../../theme";
 import background from "../../../assets/F03 burger-background.jpg";
 
