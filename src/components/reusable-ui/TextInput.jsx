@@ -2,7 +2,7 @@ import React from "react";
 import { styled } from "styled-components";
 import { theme } from "../../theme";
 
-const Input = ({ value, onChange, Icone, ...extraProps }) => {
+const TextInput = ({ value, onChange, Icone, ...extraProps }) => {
   return (
     <InputStyled className="wrapper">
       {Icone && Icone}
@@ -12,22 +12,21 @@ const Input = ({ value, onChange, Icone, ...extraProps }) => {
 };
 
 const InputStyled = styled.div`
+  display: flex;
+  justify-content: flex-start;
   background-color: ${theme.colors.white};
   width: 100%;
-  position: relative;
   margin-bottom: 18px;
-  padding: 18px 0;
+  padding: 18px 20px;
+  border-radius: 5px;
 
   .icon {
-    position: absolute;
-    left: 34px;
-    top: 50%;
     color: ${theme.colors.greySemiDark};
-    transform: translate(-50%, -50%);
   }
   input {
+    width: 100%;
     box-sizing: border-box;
-    margin-left: 50px;
+    margin-left: 10px;
     border: none;
     font-size: ${theme.fonts.P0};
     &:focus {
@@ -38,4 +37,4 @@ const InputStyled = styled.div`
     }
   }
 `;
-export default Input;
+export default TextInput;

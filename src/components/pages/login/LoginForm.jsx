@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import { BsPersonCircle } from "react-icons/bs";
 import { theme } from "../../../theme";
-
 import { FaChevronRight } from "react-icons/fa";
-import Input from "../../reusable-ui/Input";
+import TextInput from "../../reusable-ui/TextInput";
+
 const LoginForm = () => {
   // state
   const [inputValue, setInputValue] = useState("");
@@ -26,7 +26,7 @@ const LoginForm = () => {
       <div className="orange-line"></div>
       <br />
       <h2>Connectez-vous</h2>
-      <Input
+      <TextInput
         value={inputValue}
         onChange={handleChange}
         Icone={
@@ -65,23 +65,6 @@ const LoginFormStyled = styled.form`
     width: 100%;
     border: 1px solid #f56a2c;
   }
-  .wrapper,
-  button {
-    border-radius: 5px;
-    width: 100%;
-  }
-  input {
-    box-sizing: border-box;
-    margin-left: 50px;
-    border: none;
-    font-size: ${theme.fonts.P0};
-    &:focus {
-      outline: none;
-    }
-    &::placeholder {
-      color: #d3d3d3;
-    }
-  }
   button {
     padding: 18px;
     border: 1px solid ${theme.colors.primary_burger};
@@ -90,6 +73,8 @@ const LoginFormStyled = styled.form`
     background-color: ${theme.colors.primary_burger};
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+    border-radius: 5px;
+    width: 100%;
 
     &:hover {
       color: ${theme.colors.primary_burger};
