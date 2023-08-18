@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const OrderPage = () => {
   const { prenom } = useParams();
@@ -10,8 +11,7 @@ const OrderPage = () => {
   };
   return (
     <div>
-      <h1>Bonjour {prenom}</h1>
-      <button onClick={handleClick}> Déconnexion</button>
+      <Navbar prenom={prenom} onClick={handleClick} />
     </div>
   );
 };
