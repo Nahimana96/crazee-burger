@@ -1,36 +1,76 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { styled } from "styled-components";
+import { BsPersonCircle } from "react-icons/bs";
+import { theme } from "../../../theme";
+import { FaChevronRight } from "react-icons/fa";
+import TextInput from "../../reusable-ui/TextInput";
+import PrimaryButton from "../../reusable-ui/PrimaryButton";
 
 const LoginForm = () => {
   // state
-  const [prenom, setPrenom] = useState("");
+  const [inputValue, setInputValue] = useState("");
   const navigate = useNavigate();
   //   comportements
   const handleSubmit = (e) => {
     e.preventDefault();
-    // alert(`Bonjour ${prenom}`);
-    navigate(`/order/${prenom}`);
-    setPrenom("");
+    navigate(`/order/${inputValue}`);
+    setInputValue("");
   };
   const handleChange = (e) => {
-    setPrenom(e.target.value);
+    setInputValue(e.target.value);
   };
 
   return (
-    <form action="#" onSubmit={handleSubmit}>
+    <LoginFormStyled action="#" onSubmit={handleSubmit}>
       <h1>Bienvenue chez nous !</h1>
+      <div className="orange-line"></div>
       <br />
       <h2>Connectez-vous</h2>
-      <input
-        value={prenom}
-        type="text"
-        placeholder="entrer votre prénom..."
-        required
+      <TextInput
+        value={inputValue}
         onChange={handleChange}
+        Icone={
+          <div className="icon">
+            <BsPersonCircle />
+          </div>
+        }
+        placeholder="Entrez votre prénom"
+        required
       />
-      <button type="submit">Accédez à votre espace</button>
-    </form>
+
+      <PrimaryButton
+        label={"Accéder à mon espace"}
+        Icone={<FaChevronRight className="icone" />}
+      />
+    </LoginFormStyled>
   );
 };
+
+const LoginFormStyled = styled.form`
+  * {
+    box-sizing: border-box;
+  }
+  z-index: 1;
+
+  h1,
+  h2 {
+    font-size: ${theme.fonts.P5};
+    color: ${theme.colors.white};
+    font-family: "Amatic SC", cursive;
+    text-align: center;
+  }
+  h2 {
+    font-size: ${theme.fonts.P4};
+  }
+  .orange-line {
+    width: 100%;
+    border: 1px solid #f56a2c;
+  }
+  .icone {
+    transform: translateY(25%);
+    margin-left: 10px;
+  }
+`;
 
 export default LoginForm;
