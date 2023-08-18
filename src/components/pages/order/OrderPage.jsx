@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "./Navbar";
+import { styled } from "styled-components";
+import { theme } from "../../../theme";
 
 const OrderPage = () => {
   const { prenom } = useParams();
@@ -10,10 +12,15 @@ const OrderPage = () => {
     navigate("/");
   };
   return (
-    <div>
+    <OrderPageStyled>
       <Navbar prenom={prenom} onClick={handleClick} />
-    </div>
+    </OrderPageStyled>
   );
 };
 
+const OrderPageStyled = styled.div`
+  background-color: ${theme.colors.primary};
+  height: 100vh;
+  padding: 24px 56px;
+`;
 export default OrderPage;
