@@ -34,12 +34,15 @@ const NavbarStyled = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
   border-top-left-radius: ${theme.borderRadius.extraRound};
   border-top-right-radius: ${theme.borderRadius.extraRound};
+  margin: 0 auto;
   margin-top: 24px;
+  width: 100%;
+  max-width: 1400px;
   a {
     text-decoration: none;
+    margin-left: 20px;
   }
   .right-part {
     display: flex;
@@ -77,7 +80,7 @@ const NavbarStyled = styled.div`
     }
     svg {
       color: ${theme.colors.greyBlue};
-      margin: 0 50px 0 15px;
+      margin: 0 70px 0 15px;
       scale: 1.8;
     }
   }
