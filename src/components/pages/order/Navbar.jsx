@@ -3,10 +3,17 @@ import Logo from "../../reusable-ui/Logo";
 import { styled } from "styled-components";
 import { theme } from "../../../theme";
 import { BsPersonCircle } from "react-icons/bs";
+import { Link } from "react-router-dom";
 const Navbar = ({ prenom, onClick }) => {
+  const refreshPage = (e) => {
+    e.preventDefault();
+    window.location.reload();
+  };
   return (
     <NavbarStyled>
-      <Logo />
+      <Link onClick={refreshPage}>
+        <Logo />
+      </Link>
       <div className="right-part">
         <div className="logout-section">
           <p className="hey-user">
@@ -26,10 +33,14 @@ const NavbarStyled = styled.div`
   background-color: ${theme.colors.white};
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 0 20px;
   border-top-left-radius: ${theme.borderRadius.extraRound};
   border-top-right-radius: ${theme.borderRadius.extraRound};
   margin-top: 24px;
+  a {
+    text-decoration: none;
+  }
   .right-part {
     display: flex;
     justify-content: center;
