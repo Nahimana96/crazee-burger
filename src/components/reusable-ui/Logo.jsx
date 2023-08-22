@@ -23,7 +23,7 @@ const LogoStyled = styled.div`
     font-size: ${theme.fonts.P4};
   }
   img {
-    margin: 10px;
+    margin: 5px;
     width: 80px;
   }
 `;

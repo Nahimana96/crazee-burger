@@ -2,14 +2,9 @@ import React from "react";
 import Logo from "../../reusable-ui/Logo";
 import { styled } from "styled-components";
 import { theme } from "../../../theme";
-import { BsPersonCircle } from "react-icons/bs";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Profil from "./Profil";
 const Navbar = ({ prenom }) => {
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate("/");
-  };
   const refreshPage = (e) => {
     e.preventDefault();
     window.location.reload();
@@ -20,16 +15,7 @@ const Navbar = ({ prenom }) => {
         <Logo />
       </Link>
       <div className="right-part">
-        <div className="logout-section">
-          <p className="hey-user">
-            Hey, <span>{prenom}</span>
-          </p>
-          <button className="logout" onClick={handleClick}>
-            {" "}
-            Se déconnecter
-          </button>
-        </div>
-        <BsPersonCircle />
+        <Profil prenom={prenom} />
       </div>
     </NavbarStyled>
   );
@@ -48,46 +34,6 @@ const NavbarStyled = styled.div`
   a {
     text-decoration: none;
     margin-left: 20px;
-  }
-  .right-part {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .logout-section {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-end;
-      .logout,
-      p {
-        margin: 0;
-        font-family: "Open Sans", sans-serif;
-        color: ${theme.colors.greyBlue};
-      }
-      > p {
-        font-size: ${theme.fonts.P0};
-        span {
-          font-weight: ${theme.weights.bold};
-          color: ${theme.colors.primary};
-        }
-      }
-      .logout {
-        border: 1px solid white;
-        background: none;
-        padding: 0;
-        font-size: ${theme.fonts.XXS};
-        transition: all 0.2s ease-in-out;
-        &:hover {
-          border-bottom: 1px solid ${theme.colors.greyDark};
-          transition: all 0.2s ease-in-out;
-        }
-      }
-    }
-    svg {
-      color: ${theme.colors.greyBlue};
-      margin: 0 70px 0 15px;
-      scale: 1.8;
-    }
   }
 `;
 export default Navbar;
