@@ -4,11 +4,8 @@ import { styled } from "styled-components";
 import { theme } from "../../../theme";
 import { Link } from "react-router-dom";
 import Profil from "./Profil";
+import { refreshPage } from "../../../utils/window";
 const Navbar = ({ prenom }) => {
-  const refreshPage = (e) => {
-    e.preventDefault();
-    window.location.reload();
-  };
   return (
     <NavbarStyled>
       <Link onClick={refreshPage}>
