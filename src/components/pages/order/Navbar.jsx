@@ -3,8 +3,13 @@ import Logo from "../../reusable-ui/Logo";
 import { styled } from "styled-components";
 import { theme } from "../../../theme";
 import { BsPersonCircle } from "react-icons/bs";
-import { Link } from "react-router-dom";
-const Navbar = ({ prenom, onClick }) => {
+import { Link, useNavigate } from "react-router-dom";
+const Navbar = ({ prenom }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/");
+  };
   const refreshPage = (e) => {
     e.preventDefault();
     window.location.reload();
@@ -19,7 +24,7 @@ const Navbar = ({ prenom, onClick }) => {
           <p className="hey-user">
             Hey, <span>{prenom}</span>
           </p>
-          <button className="logout" onClick={onClick}>
+          <button className="logout" onClick={handleClick}>
             {" "}
             Se déconnecter
           </button>
@@ -73,7 +78,7 @@ const NavbarStyled = styled.div`
         font-size: ${theme.fonts.XXS};
         transition: all 0.2s ease-in-out;
         &:hover {
-          border-bottom: 1px solid black;
+          border-bottom: 1px solid ${theme.colors.greyDark};
           transition: all 0.2s ease-in-out;
         }
       }
