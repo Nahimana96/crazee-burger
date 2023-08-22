@@ -14,6 +14,7 @@ const TextInput = ({ value, onChange, Icone, ...extraProps }) => {
 const InputStyled = styled.div`
   display: flex;
   justify-content: flex-start;
+
   background-color: ${theme.colors.white};
   width: 100%;
   margin-bottom: 18px;
@@ -22,6 +23,8 @@ const InputStyled = styled.div`
 
   .icon {
     color: ${theme.colors.greySemiDark};
+    display: flex;
+    align-items: center;
   }
   input {
     width: 100%;
@@ -29,6 +32,7 @@ const InputStyled = styled.div`
     margin-left: 10px;
     border: none;
     font-size: ${theme.fonts.P0};
+    font-family: "Open Sans", sans-serif;
     &:focus {
       outline: none;
     }

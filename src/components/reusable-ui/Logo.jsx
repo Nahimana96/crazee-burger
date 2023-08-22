@@ -20,9 +20,11 @@ const LogoStyled = styled.div`
   h1 {
     font-family: "Amatic SC", cursive;
     color: ${theme.colors.primary_burger};
+    font-size: ${theme.fonts.P4};
   }
   img {
-    margin: 10px;
+    margin: 5px;
+    width: 80px;
   }
 `;
 export default Logo;
