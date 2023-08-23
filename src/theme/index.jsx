@@ -5,7 +5,6 @@ const colors = {
   background_white: "#f5f5f7",
   background_dark: "#292729",
   primary: "#ffa01b",
-  primary_burger: "#ff9f1b",
   green: "green",
   success: "#60bd4f",
   red: "#e25549",
@@ -16,7 +15,7 @@ const colors = {
   greySemiDark: "#93a2b1",
   greyDark: "#6f737e",
   greyBlue: "#747b91",
-  greyExtraLight: "#d3d3d3",
+  loginLine: "#f56a2c",
 };
 
 const spacing = {
@@ -41,14 +40,6 @@ const fonts = {
   P5: "48px",
   P6: "60px",
 };
-const gridUnit = 8;
-const borderRadius = {
-  subtle: 1,
-  round: "5px",
-  extraRound: "15px",
-  circle: "50%",
-};
-const shadows = {};
 const weights = {
   light: 300,
   regular: 400,
@@ -57,13 +48,22 @@ const weights = {
   bold: 700,
   heavy: 800,
 };
+const gridUnit = 8;
+const borderRadius = {
+  subtle: 1,
+  round: "5px",
+  extraRound: "15px",
+  circle: "50%",
+};
+
+const shadows = {};
 
 export const theme = {
   colors,
   fonts,
+  weights,
   gridUnit,
   borderRadius,
   shadows,
-  weights,
   spacing,
 };
