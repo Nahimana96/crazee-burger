@@ -31,12 +31,12 @@ const Menu = () => {
 const MenuStyled = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  column-gap: 60px;
-  row-gap: 50px;
+  column-gap: 85px;
+  row-gap: 60px;
   width: 100%;
   height: 100%;
   overflow-y: auto;
-  padding: 50px 100px;
+  padding: 50px 50px 150px;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -62,10 +62,14 @@ const MenuStyled = styled.div`
       width: 100%;
       padding: 5px;
       .title {
+        margin-bottom: 5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 200px;
         font-family: "Amatic SC", cursive;
         font-weight: ${theme.weights.bold};
-        margin-bottom: 5px;
-        text-overflow: ellipsis;
+        font-size: ${theme.fonts.P4};
       }
       .price-button {
         display: flex;
