@@ -1,10 +1,10 @@
 import React from "react";
-import Logo from "../../reusable-ui/Logo";
+import Logo from "../../../reusable-ui/Logo";
 import { styled } from "styled-components";
-import { theme } from "../../../theme";
+import { theme } from "../../../../theme";
 import { Link } from "react-router-dom";
 import Profil from "./Profil";
-import { refreshPage } from "../../../utils/window";
+import { refreshPage } from "../../../../utils/window";
 const Navbar = ({ prenom }) => {
   return (
     <NavbarStyled>

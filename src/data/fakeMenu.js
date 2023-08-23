@@ -17,7 +17,7 @@ export const fakeMenu1 = [
     isAvailable: true,
     isAdvertised: false,
   },
-]
+];
 
 export const fakeMenu2 = [
   {
@@ -110,4 +110,4 @@ export const fakeMenu2 = [
     isAvailable: true,
     isAdvertised: false,
   },
-]
+];

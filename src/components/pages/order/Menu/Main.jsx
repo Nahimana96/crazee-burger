@@ -1,11 +1,10 @@
-import React from "react";
 import { styled } from "styled-components";
-import { theme } from "../../../theme";
+import { theme } from "../../../../theme";
 
-const Menu = () => {
-  return <MenuStyled></MenuStyled>;
+const Main = () => {
+  return <MainStyled></MainStyled>;
 };
-const MenuStyled = styled.div`
+const MainStyled = styled.div`
   background-color: ${theme.colors.background_white};
   box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
   border-radius: 0px 0px 15px 15px;
@@ -14,4 +13,4 @@ const MenuStyled = styled.div`
   width: 100%;
   max-width: 1400px;
 `;
-export default Menu;
+export default Main;
