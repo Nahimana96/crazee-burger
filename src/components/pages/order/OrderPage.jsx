@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import Navbar from "./Navbar";
 import { styled } from "styled-components";
 import { theme } from "../../../theme";
-import Main from "./Main";
+import Menu from "./Menu";
 
 const OrderPage = () => {
   const { prenom } = useParams();
@@ -11,7 +11,7 @@ const OrderPage = () => {
   return (
     <OrderPageStyled>
       <Navbar prenom={prenom} />
-      <Main />
+      <Menu />
     </OrderPageStyled>
   );
 };
