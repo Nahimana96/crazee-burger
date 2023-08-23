@@ -2,7 +2,7 @@ import React from "react";
 import { BsPersonCircle } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
-import { theme } from "../../../theme";
+import { theme } from "../../../../theme";
 
 const Profil = ({ prenom }) => {
   return (

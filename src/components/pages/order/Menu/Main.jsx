@@ -1,8 +1,13 @@
 import { styled } from "styled-components";
 import { theme } from "../../../../theme";
+import Menu from "./Menu";
 
 const Main = () => {
-  return <MainStyled></MainStyled>;
+  return (
+    <MainStyled>
+      <Menu />
+    </MainStyled>
+  );
 };
 const MainStyled = styled.div`
   background-color: ${theme.colors.background_white};
