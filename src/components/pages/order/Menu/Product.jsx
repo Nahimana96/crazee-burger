@@ -1,11 +1,11 @@
 import React from "react";
 import PrimaryButton from "../../../reusable-ui/PrimaryButton.jsx";
-import { formatPrice } from "../../../../utils/maths";
+import { formatPrice } from "../../../../utils/maths.jsx";
 import { styled } from "styled-components";
-import { theme } from "../../../../theme";
-const Card = ({ title, price, imageSource }) => {
+import { theme } from "../../../../theme/index.jsx";
+const Product = ({ title, price, imageSource }) => {
   return (
-    <CardStyled>
+    <ProductStyled>
       <div className="image-product">
         <img src={imageSource} alt={title} />
       </div>
@@ -16,10 +16,10 @@ const Card = ({ title, price, imageSource }) => {
           <PrimaryButton className="button-ajouter" label="Ajouter" />
         </div>
       </div>
-    </CardStyled>
+    </ProductStyled>
   );
 };
-const CardStyled = styled.div`
+const ProductStyled = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -71,4 +71,4 @@ const CardStyled = styled.div`
     }
   }
 `;
-export default Card;
+export default Product;
