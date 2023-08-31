@@ -48,17 +48,16 @@ const LoginForm = () => {
 };
 
 const LoginFormStyled = styled.form`
-  * {
-    box-sizing: border-box;
-  }
   z-index: 1;
-
   h1,
   h2 {
-    font-size: ${theme.fonts.P5};
     color: ${theme.colors.white};
     font-family: "Amatic SC", cursive;
     text-align: center;
+    margin: 32px auto;
+  }
+  h1 {
+    font-size: ${theme.fonts.P5};
   }
   h2 {
     font-size: ${theme.fonts.P4};
