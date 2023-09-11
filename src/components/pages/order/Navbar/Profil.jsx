@@ -24,6 +24,7 @@ const ProfilStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 50px;
   .logout-section {
     display: flex;
     flex-direction: column;
