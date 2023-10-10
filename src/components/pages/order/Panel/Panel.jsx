@@ -7,22 +7,44 @@ import { theme } from "../../../../theme";
 import AdminContext from "../../../../context/AdminContext";
 const Panel = () => {
   const [isPanelOpened, setIsPanelOpened] = useState(false);
+  const [addIsActive, setAddIsActive] = useState(true);
+  const [modifyIsActive, setModifyIsActive] = useState(false);
   const { isModeAdmin } = useContext(AdminContext);
-  console.log(isModeAdmin);
   return (
     isModeAdmin && (
-      <PanelStyled className={`${isPanelOpened ? "appear" : "disappear"}`}>
+      <PanelStyled>
         <div
           className={`panel-container ${
             isPanelOpened ? "appear" : "disappear"
           }`}
         >
           <div className="panel-buttons">
-            <button onClick={() => setIsPanelOpened(!isPanelOpened)}>
+            <button
+              onClick={() => setIsPanelOpened(!isPanelOpened)}
+              className={`${!isPanelOpened ? "active-button" : ""}`}
+            >
               {isPanelOpened ? <FaChevronDown /> : <FaChevronUp />}
             </button>
-            <button>{<AiOutlinePlus />}Ajouter un produit</button>
-            <button>{<MdModeEditOutline />}Modifier un produit</button>
+            <button
+              className={`${addIsActive ? "active-button" : "not-active"}`}
+              onClick={() => {
+                setAddIsActive(true);
+                setModifyIsActive(false);
+              }}
+            >
+              {<AiOutlinePlus />}
+              <p>Ajouter un produit</p>
+            </button>
+            <button
+              className={`${modifyIsActive ? "active-button" : "not-active"}`}
+              onClick={() => {
+                setAddIsActive(false);
+                setModifyIsActive(true);
+              }}
+            >
+              {<MdModeEditOutline />}
+              <p>Modifier un produit</p>
+            </button>
           </div>
         </div>
       </PanelStyled>
@@ -70,6 +92,13 @@ const PanelStyled = styled.div`
         box-shadow: 0px -6px 8px -2px rgba(0, 0, 0, 0.1);
         background-color: ${theme.colors.background_white};
         cursor: pointer;
+      }
+      .active-button {
+        background-color: black;
+        color: white;
+      }
+      .not-active > p:hover {
+        border-bottom: 2px solid ${theme.colors.greySemiDark};
       }
     }
   }
