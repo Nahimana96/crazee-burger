@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 import { theme } from "../../../../theme";
 import Menu from "./Menu";
-import Panel from "./panel/Panel";
+import Panel from "../Panel/Panel";
 
 const Main = () => {
   return (
@@ -20,5 +20,6 @@ const MainStyled = styled.div`
   margin-bottom: 24px;
   width: 100%;
   max-width: 1400px;
+  overflow-y: hidden;
 `;
 export default Main;
