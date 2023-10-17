@@ -2,15 +2,15 @@ import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { theme } from "../../../../theme";
 import AdminContext from "../../../../context/AdminContext";
-import PanelButtons from "./PanelButtons";
-const Panel = () => {
+import AdminTabs from "./AdminTabs";
+const AdminPanel = () => {
   const [isPanelOpened, setIsPanelOpened] = useState(false);
   const [addIsActive, setAddIsActive] = useState(true);
   const [modifyIsActive, setModifyIsActive] = useState(false);
   const { isModeAdmin } = useContext(AdminContext);
   return (
     isModeAdmin && (
-      <PanelStyled>
+      <AdminPanelStyled>
         <div
           className={`panel-container ${
             isPanelOpened ? "appear" : "disappear"
@@ -18,7 +18,7 @@ const Panel = () => {
         >
           {addIsActive && <div>Ajouter un produit</div>}
           {modifyIsActive && <div>Modifier un produit</div>}
-          <PanelButtons
+          <AdminTabs
             isPanelOpened={isPanelOpened}
             setIsPanelOpened={setIsPanelOpened}
             addIsActive={addIsActive}
@@ -27,12 +27,12 @@ const Panel = () => {
             setModifyIsActive={setModifyIsActive}
           />
         </div>
-      </PanelStyled>
+      </AdminPanelStyled>
     )
   );
 };
 
-const PanelStyled = styled.div`
+const AdminPanelStyled = styled.div`
   .appear {
     bottom: 0;
     transition: all 200ms ease-in-out;
@@ -54,4 +54,4 @@ const PanelStyled = styled.div`
   }
 `;
 
-export default Panel;
+export default AdminPanel;

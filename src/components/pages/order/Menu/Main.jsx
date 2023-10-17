@@ -1,13 +1,13 @@
 import { styled } from "styled-components";
 import { theme } from "../../../../theme";
 import Menu from "./Menu";
-import Panel from "../Panel/Panel";
+import AdminPanel from "../AdminPanel/AdminPanel";
 
 const Main = () => {
   return (
     <MainStyled>
       <Menu />
-      <Panel />
+      <AdminPanel />
     </MainStyled>
   );
 };
