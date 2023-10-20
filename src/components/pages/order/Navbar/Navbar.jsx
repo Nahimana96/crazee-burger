@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Logo from "../../../reusable-ui/Logo";
 import { styled } from "styled-components";
 import { theme } from "../../../../theme";
@@ -9,8 +9,7 @@ import ToggleButton from "../../../reusable-ui/ToggleButton";
 import { toast } from "react-toastify";
 import ToastAdmin from "./ToastAdmin";
 
-const Navbar = ({ prenom }) => {
-  const [isModeAdmin, setIsModeAdmin] = useState(false);
+const Navbar = ({ prenom, isModeAdmin, setIsModeAdmin }) => {
   const onToggle = () => {
     !isModeAdmin &&
       toast.info("Mode admin activé", {

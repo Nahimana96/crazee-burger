@@ -1,17 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "./Navbar/Navbar";
 import { styled } from "styled-components";
 import { theme } from "../../../theme";
 import Main from "./Menu/Main";
+import AdminContext from "../../../context/AdminContext";
 
 const OrderPage = () => {
   const { prenom } = useParams();
-
+  const [isModeAdmin, setIsModeAdmin] = useState(false);
+  const adminContextValue = {
+    isModeAdmin,
+  };
   return (
     <OrderPageStyled>
-      <Navbar prenom={prenom} />
-      <Main />
+      <Navbar
+        prenom={prenom}
+        isModeAdmin={isModeAdmin}
+        setIsModeAdmin={setIsModeAdmin}
+      />
+      <AdminContext.Provider value={adminContextValue}>
+        <Main />
+      </AdminContext.Provider>
     </OrderPageStyled>
   );
 };

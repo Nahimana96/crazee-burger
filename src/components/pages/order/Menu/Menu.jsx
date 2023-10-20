@@ -29,6 +29,7 @@ const MenuStyled = styled.div`
   height: 100%;
   overflow-y: auto;
   padding: 50px 50px 150px;
+
   &::-webkit-scrollbar {
     display: none;
   }
