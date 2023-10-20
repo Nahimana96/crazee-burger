@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { theme } from "../../../../theme";
 import AdminContext from "../../../../context/AdminContext";
 import AdminTabs from "./AdminTabs";
+import Form from "./Form";
 const AdminPanel = () => {
   const [isPanelOpened, setIsPanelOpened] = useState(false);
   const [addIsActive, setAddIsActive] = useState(true);
@@ -16,7 +17,7 @@ const AdminPanel = () => {
             isPanelOpened ? "appear" : "disappear"
           }`}
         >
-          {addIsActive && <div>Ajouter un produit</div>}
+          {addIsActive && <Form />}
           {modifyIsActive && <div>Modifier un produit</div>}
           <AdminTabs
             isPanelOpened={isPanelOpened}
