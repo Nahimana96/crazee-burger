@@ -44,7 +44,7 @@ const AdminPanelStyled = styled.div`
   }
   .panel-container {
     position: absolute;
-    padding: 20px;
+    padding: 30px 70px;
     width: 100%;
     height: 250px;
     left: 0;
