@@ -1,10 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import { fakeMenu2 } from "../../../../data/fakeMenu";
+
 import { styled } from "styled-components";
 import Product from "./Product";
-const Menu = () => {
-  const [products, setProducts] = useState(fakeMenu2);
+const Menu = ({ products }) => {
   return (
     <MenuStyled>
       {products.map((product) => {

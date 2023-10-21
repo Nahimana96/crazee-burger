@@ -4,7 +4,7 @@ import { theme } from "../../../../theme";
 import AdminContext from "../../../../context/AdminContext";
 import AdminTabs from "./AdminTabs";
 import Form from "./Form";
-const AdminPanel = () => {
+const AdminPanel = ({ products, setProducts }) => {
   const [isPanelOpened, setIsPanelOpened] = useState(false);
   const [addIsActive, setAddIsActive] = useState(true);
   const [modifyIsActive, setModifyIsActive] = useState(false);
@@ -17,7 +17,9 @@ const AdminPanel = () => {
             isPanelOpened ? "appear" : "disappear"
           }`}
         >
-          {addIsActive && <Form />}
+          {addIsActive && (
+            <Form products={products} setProducts={setProducts} />
+          )}
           {modifyIsActive && <div>Modifier un produit</div>}
           <AdminTabs
             isPanelOpened={isPanelOpened}

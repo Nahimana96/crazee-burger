@@ -2,12 +2,14 @@ import { styled } from "styled-components";
 import { theme } from "../../../../theme";
 import Menu from "./Menu";
 import AdminPanel from "../AdminPanel/AdminPanel";
-
+import { fakeMenu2 } from "../../../../data/fakeMenu";
+import { useState } from "react";
 const Main = () => {
+  const [products, setProducts] = useState(fakeMenu2);
   return (
     <MainStyled>
-      <Menu />
-      <AdminPanel />
+      <Menu products={products} />
+      <AdminPanel products={products} setProducts={setProducts} />
     </MainStyled>
   );
 };

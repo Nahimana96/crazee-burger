@@ -6,10 +6,24 @@ import { MdOutlineEuroSymbol } from "react-icons/md";
 import styled from "styled-components";
 import { theme } from "../../../../theme";
 
-const Form = () => {
+const Form = ({ products, setProducts }) => {
   const [imageSource, setImageSource] = useState("");
+  const [newProduct, setNewProduct] = useState({});
+  const updateData = (e) => {
+    setNewProduct({
+      ...newProduct,
+      [e.target.name]: e.target.value,
+    });
+    e.target.name === "imageSource" && setImageSource(e.target.value);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const copyOfProducts = [...products];
+    copyOfProducts.push(newProduct);
+    setProducts(copyOfProducts);
+  };
   return (
-    <FormStyled>
+    <FormStyled onSubmit={handleSubmit}>
       <div className="image-container">
         {imageSource ? (
           <img src={imageSource} alt="image du produit" />
@@ -18,15 +32,26 @@ const Form = () => {
         )}
       </div>
 
-      <TextInput Icone={<FaHamburger />} placeholder={"Nom du produit"} />
       <TextInput
+        name="title"
+        Icone={<FaHamburger />}
+        placeholder={"Nom du produit (ex: Super Burger)"}
+        onChange={updateData}
+      />
+      <TextInput
+        name="imageSource"
         Icone={<BsFillCameraFill />}
         placeholder={
           "Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)"
         }
-        onChange={(e) => setImageSource(e.target.value)}
+        onChange={updateData}
       />
-      <TextInput Icone={<MdOutlineEuroSymbol />} placeholder={"Prix"} />
+      <TextInput
+        name="price"
+        Icone={<MdOutlineEuroSymbol />}
+        placeholder={"Prix"}
+        onChange={updateData}
+      />
       <button type="submit">Ajouter un produit au menu</button>
     </FormStyled>
   );
@@ -81,6 +106,7 @@ const FormStyled = styled.form`
     border-radius: 5px;
     max-width: 275px;
     height: 100%;
+    cursor: pointer;
   }
 `;
 export default Form;
