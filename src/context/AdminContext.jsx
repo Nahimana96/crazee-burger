@@ -1,5 +1,6 @@
 import { createContext } from "react";
 
 export default createContext({
-  isModeAdmin: "",
+  isModeAdmin: false,
+  setIsModeAdmin: () => {},
 });

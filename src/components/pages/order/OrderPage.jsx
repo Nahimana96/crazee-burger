@@ -11,18 +11,15 @@ const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const adminContextValue = {
     isModeAdmin,
+    setIsModeAdmin,
   };
   return (
-    <OrderPageStyled>
-      <Navbar
-        prenom={prenom}
-        isModeAdmin={isModeAdmin}
-        setIsModeAdmin={setIsModeAdmin}
-      />
-      <AdminContext.Provider value={adminContextValue}>
+    <AdminContext.Provider value={adminContextValue}>
+      <OrderPageStyled>
+        <Navbar prenom={prenom} />
         <Main />
-      </AdminContext.Provider>
-    </OrderPageStyled>
+      </OrderPageStyled>
+    </AdminContext.Provider>
   );
 };
 
