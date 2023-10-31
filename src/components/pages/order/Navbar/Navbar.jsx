@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import ToastAdmin from "./ToastAdmin";
 import AdminContext from "../../../../context/AdminContext";
 
-const Navbar = ({ prenom }) => {
+const Navbar = () => {
   const { isModeAdmin, setIsModeAdmin } = useContext(AdminContext);
   const onToggle = () => {
     !isModeAdmin &&
@@ -39,7 +39,7 @@ const Navbar = ({ prenom }) => {
           labelIfChecked="DÉSACTIVER LE MODE ADMIN"
           labelIfUnchecked="ACTIVER LE MODE ADMIN"
         />
-        <Profil prenom={prenom} />
+        <Profil />
         <ToastAdmin />
       </div>
     </NavbarStyled>

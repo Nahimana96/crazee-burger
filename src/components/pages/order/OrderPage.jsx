@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
 import Navbar from "./Navbar/Navbar";
 import { styled } from "styled-components";
 import { theme } from "../../../theme";
@@ -7,16 +6,24 @@ import Main from "./Menu/Main";
 import AdminContext from "../../../context/AdminContext";
 
 const OrderPage = () => {
-  const { prenom } = useParams();
   const [isModeAdmin, setIsModeAdmin] = useState(false);
+  const [isPanelOpened, setIsPanelOpened] = useState(false);
+  const [addIsActive, setAddIsActive] = useState(true);
+  const [modifyIsActive, setModifyIsActive] = useState(false);
   const adminContextValue = {
     isModeAdmin,
     setIsModeAdmin,
+    isPanelOpened,
+    setIsPanelOpened,
+    addIsActive,
+    setAddIsActive,
+    modifyIsActive,
+    setModifyIsActive,
   };
   return (
     <AdminContext.Provider value={adminContextValue}>
       <OrderPageStyled>
-        <Navbar prenom={prenom} />
+        <Navbar />
         <Main />
       </OrderPageStyled>
     </AdminContext.Provider>

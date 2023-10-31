@@ -1,37 +1,23 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { theme } from "../../../../theme";
-import AdminContext from "../../../../context/AdminContext";
 import AdminTabs from "./AdminTabs";
 import Form from "./Form";
+import AdminContext from "../../../../context/AdminContext";
 const AdminPanel = ({ products, setProducts }) => {
-  const [isPanelOpened, setIsPanelOpened] = useState(false);
-  const [addIsActive, setAddIsActive] = useState(true);
-  const [modifyIsActive, setModifyIsActive] = useState(false);
-  const { isModeAdmin } = useContext(AdminContext);
+  const { isPanelOpened, addIsActive, modifyIsActive } =
+    useContext(AdminContext);
+
   return (
-    isModeAdmin && (
-      <AdminPanelStyled>
-        <div
-          className={`panel-container ${
-            isPanelOpened ? "appear" : "disappear"
-          }`}
-        >
-          {addIsActive && (
-            <Form products={products} setProducts={setProducts} />
-          )}
-          {modifyIsActive && <div>Modifier un produit</div>}
-          <AdminTabs
-            isPanelOpened={isPanelOpened}
-            setIsPanelOpened={setIsPanelOpened}
-            addIsActive={addIsActive}
-            setAddIsActive={setAddIsActive}
-            modifyIsActive={modifyIsActive}
-            setModifyIsActive={setModifyIsActive}
-          />
-        </div>
-      </AdminPanelStyled>
-    )
+    <AdminPanelStyled>
+      <div
+        className={`panel-container ${isPanelOpened ? "appear" : "disappear"}`}
+      >
+        {addIsActive && <Form products={products} setProducts={setProducts} />}
+        {modifyIsActive && <div>Modifier un produit</div>}
+        <AdminTabs />
+      </div>
+    </AdminPanelStyled>
   );
 };
 

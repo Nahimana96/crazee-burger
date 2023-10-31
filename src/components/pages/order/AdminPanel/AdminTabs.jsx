@@ -1,17 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { AiOutlinePlus } from "react-icons/ai";
 import { MdModeEditOutline } from "react-icons/md";
 import styled from "styled-components";
 import Tab from "../../../reusable-ui/Tab";
-const AdminTabs = ({
-  isPanelOpened,
-  setIsPanelOpened,
-  addIsActive,
-  setAddIsActive,
-  modifyIsActive,
-  setModifyIsActive,
-}) => {
+import AdminContext from "../../../../context/AdminContext";
+const AdminTabs = () => {
+  const {
+    isPanelOpened,
+    setIsPanelOpened,
+    addIsActive,
+    setAddIsActive,
+    modifyIsActive,
+    setModifyIsActive,
+  } = useContext(AdminContext);
   return (
     <AdminTabsStyled>
       <Tab

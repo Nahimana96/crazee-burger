@@ -3,13 +3,17 @@ import { theme } from "../../../../theme";
 import Menu from "./Menu";
 import AdminPanel from "../AdminPanel/AdminPanel";
 import { fakeMenu2 } from "../../../../data/fakeMenu";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import AdminContext from "../../../../context/AdminContext";
 const Main = () => {
   const [products, setProducts] = useState(fakeMenu2);
+  const { isModeAdmin } = useContext(AdminContext);
   return (
     <MainStyled>
       <Menu products={products} />
-      <AdminPanel products={products} setProducts={setProducts} />
+      {isModeAdmin && (
+        <AdminPanel products={products} setProducts={setProducts} />
+      )}
     </MainStyled>
   );
 };
