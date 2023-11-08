@@ -10,6 +10,7 @@ const OrderPage = () => {
   const [isPanelOpened, setIsPanelOpened] = useState(false);
   const [addIsActive, setAddIsActive] = useState(true);
   const [modifyIsActive, setModifyIsActive] = useState(false);
+  const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const adminContextValue = {
     isModeAdmin,
     setIsModeAdmin,
@@ -19,6 +20,8 @@ const OrderPage = () => {
     setAddIsActive,
     modifyIsActive,
     setModifyIsActive,
+    currentTabSelected,
+    setCurrentTabSelected,
   };
   return (
     <AdminContext.Provider value={adminContextValue}>

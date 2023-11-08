@@ -1,9 +1,11 @@
 import React from "react";
-import { useState } from "react";
-
 import { styled } from "styled-components";
 import Product from "./Product";
 const Menu = ({ products }) => {
+  const isValidUrl = (imageUrl) => {
+    const imageUrlRegex = /\.(jpeg|jpg|gif|png)$/i;
+    return imageUrlRegex.test(imageUrl);
+  };
   return (
     <MenuStyled>
       {products.map((product) => {
@@ -11,7 +13,11 @@ const Menu = ({ products }) => {
           <Product
             key={product.id}
             title={product.title}
-            imageSource={product.imageSource}
+            imageSource={
+              isValidUrl(product.imageSource)
+                ? product.imageSource
+                : "/images/coming-soon.png"
+            }
             price={product.price}
           />
         );

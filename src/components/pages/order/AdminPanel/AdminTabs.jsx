@@ -1,59 +1,35 @@
 import React, { useContext } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-import { AiOutlinePlus } from "react-icons/ai";
-import { MdModeEditOutline } from "react-icons/md";
 import styled from "styled-components";
 import Tab from "../../../reusable-ui/Tab";
 import AdminContext from "../../../../context/AdminContext";
+import { getTabsConfig } from "./getTabsConfig";
 const AdminTabs = () => {
   const {
     isPanelOpened,
     setIsPanelOpened,
-    addIsActive,
-    setAddIsActive,
-    modifyIsActive,
-    setModifyIsActive,
+    currentTabSelected,
+    setCurrentTabSelected,
   } = useContext(AdminContext);
 
   const selectTab = (selectedTab) => {
     setIsPanelOpened(true);
-    if (selectedTab === "add") {
-      setAddIsActive(true);
-      setModifyIsActive(false);
-    }
-    if (selectedTab === "modify") {
-      setAddIsActive(false);
-      setModifyIsActive(true);
-    }
+    setCurrentTabSelected(selectedTab);
   };
-
-  const tabsConfig = [
-    {
-      label: "",
-      icon: isPanelOpened ? <FaChevronDown /> : <FaChevronUp />,
-      onCLick: () => setIsPanelOpened(!isPanelOpened),
-      className: `${!isPanelOpened ? "active-button" : ""} hide-span`,
-    },
-    {
-      label: "Ajouter un produit",
-      icon: <MdModeEditOutline />,
-      onCLick: () => selectTab("add"),
-      className: `${addIsActive ? "active-button" : ""}`,
-    },
-    {
-      label: "Modifier un produit",
-      icon: <MdModeEditOutline />,
-      onCLick: () => selectTab("modify"),
-      className: `${modifyIsActive ? "active-button" : ""}`,
-    },
-  ];
+  const tabs = getTabsConfig(currentTabSelected);
   return (
     <AdminTabsStyled>
-      {tabsConfig.map((tab) => (
+      <Tab
+        icone={isPanelOpened ? <FaChevronDown /> : <FaChevronUp />}
+        onClick={() => setIsPanelOpened(!isPanelOpened)}
+        className={`${!isPanelOpened ? "active-button" : ""} hide-span`}
+      />
+      {tabs.map((tab, index) => (
         <Tab
+          key={index}
           text={tab.label}
           icone={tab.icon}
-          onClick={tab.onCLick}
+          onClick={() => selectTab(tab.index)}
           className={tab.className}
         />
       ))}

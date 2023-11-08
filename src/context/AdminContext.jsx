@@ -9,4 +9,6 @@ export default createContext({
   setAddIsActive: () => {},
   modifyIsActive: false,
   setModifyIsActive: () => {},
+  currentTabSelected: "",
+  setCurrentTabSelected: () => {},
 });

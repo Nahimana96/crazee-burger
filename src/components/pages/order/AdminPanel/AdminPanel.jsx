@@ -5,16 +5,17 @@ import AdminTabs from "./AdminTabs";
 import Form from "./Form";
 import AdminContext from "../../../../context/AdminContext";
 const AdminPanel = ({ products, setProducts }) => {
-  const { isPanelOpened, addIsActive, modifyIsActive } =
-    useContext(AdminContext);
+  const { isPanelOpened, currentTabSelected } = useContext(AdminContext);
 
   return (
     <AdminPanelStyled>
       <div
         className={`panel-container ${isPanelOpened ? "appear" : "disappear"}`}
       >
-        {addIsActive && <Form products={products} setProducts={setProducts} />}
-        {modifyIsActive && <div>Modifier un produit</div>}
+        {currentTabSelected === "add" && (
+          <Form products={products} setProducts={setProducts} />
+        )}
+        {currentTabSelected === "edit" && <div>Modifier un produit</div>}
         <AdminTabs />
       </div>
     </AdminPanelStyled>
