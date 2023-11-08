@@ -14,33 +14,49 @@ const AdminTabs = () => {
     modifyIsActive,
     setModifyIsActive,
   } = useContext(AdminContext);
+
+  const selectTab = (selectedTab) => {
+    setIsPanelOpened(true);
+    if (selectedTab === "add") {
+      setAddIsActive(true);
+      setModifyIsActive(false);
+    }
+    if (selectedTab === "modify") {
+      setAddIsActive(false);
+      setModifyIsActive(true);
+    }
+  };
+
+  const tabsConfig = [
+    {
+      label: "",
+      icon: isPanelOpened ? <FaChevronDown /> : <FaChevronUp />,
+      onCLick: () => setIsPanelOpened(!isPanelOpened),
+      className: `${!isPanelOpened ? "active-button" : ""} hide-span`,
+    },
+    {
+      label: "Ajouter un produit",
+      icon: <MdModeEditOutline />,
+      onCLick: () => selectTab("add"),
+      className: `${addIsActive ? "active-button" : ""}`,
+    },
+    {
+      label: "Modifier un produit",
+      icon: <MdModeEditOutline />,
+      onCLick: () => selectTab("modify"),
+      className: `${modifyIsActive ? "active-button" : ""}`,
+    },
+  ];
   return (
     <AdminTabsStyled>
-      <Tab
-        onClick={() => setIsPanelOpened(!isPanelOpened)}
-        className={`${!isPanelOpened ? "active-button" : ""} hide-span`}
-        icone={isPanelOpened ? <FaChevronDown /> : <FaChevronUp />}
-      />
-      <Tab
-        className={`${addIsActive ? "active-button" : ""}`}
-        onClick={() => {
-          setAddIsActive(true);
-          setModifyIsActive(false);
-          setIsPanelOpened(true);
-        }}
-        icone={<AiOutlinePlus />}
-        text={"Ajouter un produit"}
-      />
-      <Tab
-        className={`${modifyIsActive ? "active-button" : ""}`}
-        onClick={() => {
-          setAddIsActive(false);
-          setModifyIsActive(true);
-          setIsPanelOpened(true);
-        }}
-        icone={<MdModeEditOutline />}
-        text={"Modifier un produit"}
-      />
+      {tabsConfig.map((tab) => (
+        <Tab
+          text={tab.label}
+          icone={tab.icon}
+          onClick={tab.onCLick}
+          className={tab.className}
+        />
+      ))}
     </AdminTabsStyled>
   );
 };
