@@ -16,7 +16,7 @@ const AdminTabs = () => {
     setIsPanelOpened(true);
     setCurrentTabSelected(selectedTab);
   };
-  const tabs = getTabsConfig(currentTabSelected);
+  const tabs = getTabsConfig();
   return (
     <AdminTabsStyled>
       <Tab
@@ -30,7 +30,7 @@ const AdminTabs = () => {
           text={tab.label}
           icone={tab.icon}
           onClick={() => selectTab(tab.index)}
-          className={tab.className}
+          className={currentTabSelected === tab.index ? "active-button" : ""}
         />
       ))}
     </AdminTabsStyled>
