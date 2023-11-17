@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import TextInput from "../../../reusable-ui/TextInput";
 import { FaHamburger } from "react-icons/fa";
 import { BsFillCameraFill } from "react-icons/bs";
 import { MdOutlineEuroSymbol } from "react-icons/md";
 import styled from "styled-components";
 import { theme } from "../../../../theme";
+import { FiCheckCircle } from "react-icons/fi";
+import AdminContext from "../../../../context/AdminContext";
 
-const Form = ({ products, setProducts }) => {
+const Form = () => {
   const [imageSource, setImageSource] = useState("");
   const [newProduct, setNewProduct] = useState({});
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const { handleAdd } = useContext(AdminContext);
+
   const updateData = (e) => {
     setNewProduct({
       ...newProduct,
@@ -18,9 +23,11 @@ const Form = ({ products, setProducts }) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const copyOfProducts = [...products];
-    copyOfProducts.push(newProduct);
-    setProducts(copyOfProducts);
+    handleAdd(newProduct);
+    setIsFormSubmitted(true);
+    setTimeout(() => {
+      setIsFormSubmitted(false);
+    }, 2000);
   };
   return (
     <FormStyled onSubmit={handleSubmit}>
@@ -31,7 +38,6 @@ const Form = ({ products, setProducts }) => {
           "Aucune image"
         )}
       </div>
-
       <TextInput
         name="title"
         Icone={<FaHamburger />}
@@ -52,7 +58,14 @@ const Form = ({ products, setProducts }) => {
         placeholder={"Prix"}
         onChange={updateData}
       />
-      <button type="submit">Ajouter un produit au menu</button>
+      <div className="btn-wrapper">
+        <button type="submit">Ajouter un produit au menu</button>
+        {isFormSubmitted && (
+          <p className="success">
+            <FiCheckCircle /> Ajouté avec succès
+          </p>
+        )}
+      </div>
     </FormStyled>
   );
 };
@@ -97,16 +110,25 @@ const FormStyled = styled.form`
       border-radius: 5px;
     }
   }
-  button {
+  .btn-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
     grid-column-start: 2;
-    background-color: ${theme.colors.success};
-    font-weight: ${theme.weights.bold};
-    color: white;
-    border: 1px solid ${theme.colors.success};
-    border-radius: 5px;
-    max-width: 275px;
-    height: 100%;
-    cursor: pointer;
+    button {
+      background-color: ${theme.colors.success};
+      font-weight: ${theme.weights.bold};
+      color: white;
+      border: 1px solid ${theme.colors.success};
+      border-radius: 5px;
+      width: 275px;
+      height: 100%;
+      cursor: pointer;
+    }
+    p {
+      padding-left: 15px;
+      color: ${theme.colors.success};
+    }
   }
 `;
 export default Form;
