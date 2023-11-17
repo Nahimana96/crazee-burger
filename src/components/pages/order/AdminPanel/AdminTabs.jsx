@@ -16,7 +16,7 @@ const AdminTabs = () => {
     setIsPanelOpened(true);
     setCurrentTabSelected(selectedTab);
   };
-  const tabs = getTabsConfig();
+  const tabs = getTabsConfig;
   return (
     <AdminTabsStyled>
       <Tab

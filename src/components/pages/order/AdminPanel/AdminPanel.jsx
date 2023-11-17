@@ -4,9 +4,12 @@ import { theme } from "../../../../theme";
 import AdminTabs from "./AdminTabs";
 import Form from "./Form";
 import AdminContext from "../../../../context/AdminContext";
+import { getTabSelected, getTabsConfig } from "./getTabsConfig";
 const AdminPanel = ({ products, setProducts }) => {
   const { isPanelOpened, currentTabSelected } = useContext(AdminContext);
 
+  const tabs = getTabsConfig;
+  const tabSelected = getTabSelected(tabs, currentTabSelected);
   return (
     <AdminPanelStyled>
       <div
