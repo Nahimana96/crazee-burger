@@ -11,4 +11,7 @@ export default createContext({
   setModifyIsActive: () => {},
   currentTabSelected: "",
   setCurrentTabSelected: () => {},
+  products: {},
+  setProducts: () => {},
+  handleAdd: () => {},
 });

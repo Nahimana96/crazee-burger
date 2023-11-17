@@ -4,24 +4,29 @@ import { styled } from "styled-components";
 import { theme } from "../../../theme";
 import Main from "./Menu/Main";
 import AdminContext from "../../../context/AdminContext";
+import { fakeMenu2 } from "../../../data/fakeMenu";
 
 const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [isPanelOpened, setIsPanelOpened] = useState(false);
-  const [addIsActive, setAddIsActive] = useState(true);
-  const [modifyIsActive, setModifyIsActive] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
+  const [products, setProducts] = useState(fakeMenu2);
+
+  const handleAdd = (newProduct) => {
+    const copyOfProducts = [...products];
+    const productsUpdated = [newProduct, ...copyOfProducts];
+    setProducts(productsUpdated);
+  };
   const adminContextValue = {
     isModeAdmin,
     setIsModeAdmin,
     isPanelOpened,
     setIsPanelOpened,
-    addIsActive,
-    setAddIsActive,
-    modifyIsActive,
-    setModifyIsActive,
     currentTabSelected,
     setCurrentTabSelected,
+    products,
+    setProducts,
+    handleAdd,
   };
   return (
     <AdminContext.Provider value={adminContextValue}>
