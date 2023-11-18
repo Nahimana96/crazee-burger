@@ -2,9 +2,9 @@ import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { theme } from "../../../../theme";
 import AdminTabs from "./AdminTabs";
-import Form from "./Form";
 import AdminContext from "../../../../context/AdminContext";
 import { getTabSelected, getTabsConfig } from "./getTabsConfig";
+import AddForm from "./AddForm";
 const AdminPanel = () => {
   const { isPanelOpened, currentTabSelected } = useContext(AdminContext);
 
@@ -15,7 +15,7 @@ const AdminPanel = () => {
       <div
         className={`panel-container ${isPanelOpened ? "appear" : "disappear"}`}
       >
-        {currentTabSelected === "add" && <Form />}
+        {currentTabSelected === "add" && <AddForm />}
         {currentTabSelected === "edit" && <div>Modifier un produit</div>}
         <AdminTabs />
       </div>

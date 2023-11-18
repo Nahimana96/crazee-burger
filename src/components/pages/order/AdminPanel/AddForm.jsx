@@ -8,22 +8,28 @@ import { theme } from "../../../../theme";
 import { FiCheckCircle } from "react-icons/fi";
 import AdminContext from "../../../../context/AdminContext";
 
-const Form = () => {
+const AddForm = () => {
   const [imageSource, setImageSource] = useState("");
   const [newProduct, setNewProduct] = useState({});
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const { handleAdd } = useContext(AdminContext);
 
-  const updateData = (e) => {
+  const handleChange = (e) => {
     setNewProduct({
       ...newProduct,
+      // dynamic property name [e.target.name]
       [e.target.name]: e.target.value,
     });
     e.target.name === "imageSource" && setImageSource(e.target.value);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleAdd(newProduct);
+    const newProductToAdd = {
+      ...newProduct,
+      id: crypto.randomUUID(),
+    };
+    console.log(newProductToAdd);
+    handleAdd(newProductToAdd);
     setIsFormSubmitted(true);
     setTimeout(() => {
       setIsFormSubmitted(false);
@@ -42,7 +48,7 @@ const Form = () => {
         name="title"
         Icone={<FaHamburger />}
         placeholder={"Nom du produit (ex: Super Burger)"}
-        onChange={updateData}
+        onChange={handleChange}
       />
       <TextInput
         name="imageSource"
@@ -50,13 +56,13 @@ const Form = () => {
         placeholder={
           "Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)"
         }
-        onChange={updateData}
+        onChange={handleChange}
       />
       <TextInput
         name="price"
         Icone={<MdOutlineEuroSymbol />}
         placeholder={"Prix"}
-        onChange={updateData}
+        onChange={handleChange}
       />
       <div className="btn-wrapper">
         <button type="submit">Ajouter un produit au menu</button>
@@ -131,4 +137,4 @@ const FormStyled = styled.form`
     }
   }
 `;
-export default Form;
+export default AddForm;
