@@ -6,12 +6,13 @@ import { theme } from "../../../../theme/index.jsx";
 import { TiDelete } from "react-icons/ti";
 import AdminContext from "../../../../context/AdminContext.jsx";
 
-const Product = ({ title, price, imageSource }) => {
+const Product = ({ title, price, imageSource, onClick }) => {
   const { isModeAdmin } = useContext(AdminContext);
+
   return (
     <ProductStyled>
       {isModeAdmin && (
-        <div className="delete-button">
+        <div className="delete-button" onClick={onClick}>
           <TiDelete />
         </div>
       )}

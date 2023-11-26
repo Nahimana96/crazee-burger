@@ -5,11 +5,11 @@ import AdminPanel from "../AdminPanel/AdminPanel";
 import { useContext } from "react";
 import AdminContext from "../../../../context/AdminContext";
 const Main = () => {
-  const { isModeAdmin, products } = useContext(AdminContext);
+  const { isModeAdmin } = useContext(AdminContext);
 
   return (
     <MainStyled>
-      <Menu products={products} />
+      <Menu />
       {isModeAdmin && <AdminPanel />}
     </MainStyled>
   );

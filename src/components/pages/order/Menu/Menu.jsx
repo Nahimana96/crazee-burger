@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { styled } from "styled-components";
 import Product from "./Product";
-const Menu = ({ products }) => {
+import AdminContext from "../../../../context/AdminContext";
+
+const Menu = () => {
+  const { products, setProducts } = useContext(AdminContext);
+
+  const deleteProduct = (id) => {
+    const copyOfProducts = [...products];
+    const productsUpdated = copyOfProducts.filter(
+      (product) => product.id !== id
+    );
+    setProducts(productsUpdated);
+  };
   const isValidUrl = (imageUrl) => {
     const imageUrlRegex = /\.(jpeg|jpg|gif|png)$/i;
     return imageUrlRegex.test(imageUrl);
@@ -11,6 +22,7 @@ const Menu = ({ products }) => {
       {products.map((product) => {
         return (
           <Product
+            onClick={() => deleteProduct(product.id)}
             key={product.id}
             title={product.title}
             imageSource={
