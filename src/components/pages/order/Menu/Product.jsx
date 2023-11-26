@@ -47,6 +47,10 @@ const ProductStyled = styled.div`
     align-items: center;
     top: 15px;
     right: 15px;
+    cursor: pointer;
+    :hover {
+      color: ${theme.colors.redSecondary};
+    }
     svg {
       width: 100%;
       height: 100%;
