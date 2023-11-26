@@ -10,7 +10,11 @@ import AdminContext from "../../../../context/AdminContext";
 
 const AddForm = () => {
   const [imageSource, setImageSource] = useState("");
-  const [newProduct, setNewProduct] = useState({});
+  const [newProduct, setNewProduct] = useState({
+    title: "",
+    imageSource: "",
+    price: "",
+  });
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const { handleAdd } = useContext(AdminContext);
 
@@ -22,21 +26,33 @@ const AddForm = () => {
     });
     e.target.name === "imageSource" && setImageSource(e.target.value);
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const newProductToAdd = {
       ...newProduct,
       id: crypto.randomUUID(),
     };
-    console.log(newProductToAdd);
+    // add the new product
     handleAdd(newProductToAdd);
+
+    // clear all input values
+    setNewProduct({
+      title: "",
+      imageSource: "",
+      price: "",
+    });
+    // set isFormSubmitted to true to show success message
     setIsFormSubmitted(true);
+    // clear imageSource
+    setImageSource("");
+    // set isFormSubmitted to false after 2s to hide success message
     setTimeout(() => {
       setIsFormSubmitted(false);
     }, 2000);
   };
   return (
-    <FormStyled onSubmit={handleSubmit}>
+    <AddFormStyled onSubmit={handleSubmit}>
       <div className="image-container">
         {imageSource ? (
           <img src={imageSource} alt="image du produit" />
@@ -49,6 +65,7 @@ const AddForm = () => {
         Icone={<FaHamburger />}
         placeholder={"Nom du produit (ex: Super Burger)"}
         onChange={handleChange}
+        value={newProduct.title}
       />
       <TextInput
         name="imageSource"
@@ -56,6 +73,7 @@ const AddForm = () => {
         placeholder={
           "Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)"
         }
+        value={newProduct.imageSource}
         onChange={handleChange}
       />
       <TextInput
@@ -63,6 +81,7 @@ const AddForm = () => {
         Icone={<MdOutlineEuroSymbol />}
         placeholder={"Prix"}
         onChange={handleChange}
+        value={newProduct.price}
       />
       <div className="btn-wrapper">
         <button type="submit">Ajouter un produit au menu</button>
@@ -72,11 +91,11 @@ const AddForm = () => {
           </p>
         )}
       </div>
-    </FormStyled>
+    </AddFormStyled>
   );
 };
 
-const FormStyled = styled.form`
+const AddFormStyled = styled.form`
   display: grid;
   grid-template-columns: 25% 75%;
   grid-template-rows: repeat(4, 25%);
