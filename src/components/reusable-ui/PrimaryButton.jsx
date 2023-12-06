@@ -2,9 +2,9 @@ import React from "react";
 import { styled } from "styled-components";
 import { theme } from "../../theme";
 
-const PrimaryButton = ({ label, Icone, className }) => {
+const PrimaryButton = ({ label, Icone, className, onClick }) => {
   return (
-    <PrimaryButtonStyled className={className}>
+    <PrimaryButtonStyled className={className} onClick={onClick}>
       <span>{label}</span>
       {Icone && Icone}
     </PrimaryButtonStyled>

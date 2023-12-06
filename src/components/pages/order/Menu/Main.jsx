@@ -24,5 +24,10 @@ const MainStyled = styled.div`
   width: 100%;
   max-width: 1400px;
   overflow-y: hidden;
+  .when-empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 export default Main;

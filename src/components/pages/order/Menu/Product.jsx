@@ -35,6 +35,7 @@ const ProductStyled = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 330px;
   padding: 50px 20px 30px 20px;
   box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
   border-radius: ${theme.borderRadius.extraRound};
@@ -75,7 +76,7 @@ const ProductStyled = styled.div`
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      width: 200px;
+      width: 240px;
       font-family: "Amatic SC", cursive;
       font-weight: ${theme.weights.bold};
       font-size: ${theme.fonts.P4};

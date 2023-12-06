@@ -11,7 +11,6 @@ const OrderPage = () => {
   const [isPanelOpened, setIsPanelOpened] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [products, setProducts] = useState(fakeMenu2);
-
   const handleAdd = (newProduct) => {
     const copyOfProducts = [...products];
     const productsUpdated = [newProduct, ...copyOfProducts];
