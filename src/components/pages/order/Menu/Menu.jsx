@@ -2,19 +2,15 @@ import React, { useContext } from "react";
 import { styled } from "styled-components";
 import Product from "./Product";
 import AdminContext from "../../../../context/AdminContext";
-import { fakeMenu2 } from "../../../../data/fakeMenu";
 import PrimaryButton from "../../../reusable-ui/PrimaryButton";
+import { formatPrice } from "../../../../utils/maths.jsx";
 import { theme } from "../../../../theme";
 
+const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 const Menu = () => {
-  const { products, setProducts, isModeAdmin } = useContext(AdminContext);
-  const deleteProduct = (id) => {
-    const copyOfProducts = [...products];
-    const productsUpdated = copyOfProducts.filter(
-      (product) => product.id !== id
-    );
-    setProducts(productsUpdated);
-  };
+  const { products, handleDelete, isModeAdmin, resetMenu } =
+    useContext(AdminContext);
+
   const isValidUrl = (imageUrl) => {
     const imageUrlRegex = /\.(jpeg|jpg|gif|png)$/i;
     return imageUrlRegex.test(imageUrl);
@@ -40,23 +36,22 @@ const Menu = () => {
             <p>Cliquez ci-dessous pour le réinitialiser</p>
             <PrimaryButton
               label={"Générer de nouveaux produits"}
-              onClick={() => setProducts(fakeMenu2)}
+              onClick={resetMenu}
             />
           </div>
         )
       ) : (
-        products.map((product) => {
+        products.map(({ id, title, imageSource, price }) => {
           return (
             <Product
-              onClick={() => deleteProduct(product.id)}
-              key={product.id}
-              title={product.title}
+              onDelete={() => handleDelete(id)}
+              key={id}
+              title={title}
               imageSource={
-                isValidUrl(product.imageSource)
-                  ? product.imageSource
-                  : "/images/coming-soon.png"
+                isValidUrl(imageSource) ? imageSource : IMAGE_BY_DEFAULT
               }
-              price={product.price}
+              leftDescription={formatPrice(price)}
+              hasDeleteButton={isModeAdmin}
             />
           );
         })

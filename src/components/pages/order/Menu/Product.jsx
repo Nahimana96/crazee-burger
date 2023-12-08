@@ -1,18 +1,20 @@
 import React, { useContext } from "react";
 import PrimaryButton from "../../../reusable-ui/PrimaryButton.jsx";
-import { formatPrice } from "../../../../utils/maths.jsx";
 import { styled } from "styled-components";
 import { theme } from "../../../../theme/index.jsx";
 import { TiDelete } from "react-icons/ti";
-import AdminContext from "../../../../context/AdminContext.jsx";
 
-const Product = ({ title, price, imageSource, onClick }) => {
-  const { isModeAdmin } = useContext(AdminContext);
-
+const Product = ({
+  title,
+  leftDescription,
+  imageSource,
+  onDelete,
+  hasDeleteButton,
+}) => {
   return (
     <ProductStyled>
-      {isModeAdmin && (
-        <div className="delete-button" onClick={onClick}>
+      {hasDeleteButton && (
+        <div className="delete-button" onClick={onDelete}>
           <TiDelete />
         </div>
       )}
@@ -22,7 +24,7 @@ const Product = ({ title, price, imageSource, onClick }) => {
       <div className="text-info">
         <h1 className="title">{title}</h1>
         <div className="price-button">
-          <p className="price">{formatPrice(price)}</p>
+          <p className="price">{leftDescription}</p>
           <PrimaryButton className="button-ajouter" label="Ajouter" />
         </div>
       </div>
@@ -51,6 +53,9 @@ const ProductStyled = styled.div`
     cursor: pointer;
     :hover {
       color: ${theme.colors.redSecondary};
+    }
+    :active {
+      color: ${theme.colors.primary};
     }
     svg {
       width: 100%;

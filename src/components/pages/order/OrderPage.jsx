@@ -16,6 +16,18 @@ const OrderPage = () => {
     const productsUpdated = [newProduct, ...copyOfProducts];
     setProducts(productsUpdated);
   };
+
+  const handleDelete = (id) => {
+    const copyOfProducts = [...products];
+    const productsUpdated = copyOfProducts.filter(
+      (product) => product.id !== id
+    );
+    setProducts(productsUpdated);
+  };
+
+  const resetMenu = () => {
+    setProducts(fakeMenu2);
+  };
   const adminContextValue = {
     isModeAdmin,
     setIsModeAdmin,
@@ -26,6 +38,8 @@ const OrderPage = () => {
     products,
     setProducts,
     handleAdd,
+    handleDelete,
+    resetMenu,
   };
   return (
     <AdminContext.Provider value={adminContextValue}>

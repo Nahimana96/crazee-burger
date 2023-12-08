@@ -8,13 +8,15 @@ import { theme } from "../../../../theme";
 import { FiCheckCircle } from "react-icons/fi";
 import AdminContext from "../../../../context/AdminContext";
 
+const EMPTY_PRODUCT = {
+  id: "",
+  title: "",
+  imageSource: "",
+  price: "",
+};
 const AddForm = () => {
   const [imageSource, setImageSource] = useState("");
-  const [newProduct, setNewProduct] = useState({
-    title: "",
-    imageSource: "",
-    price: "",
-  });
+  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const { handleAdd } = useContext(AdminContext);
 
@@ -37,11 +39,7 @@ const AddForm = () => {
     handleAdd(newProductToAdd);
 
     // clear all input values
-    setNewProduct({
-      title: "",
-      imageSource: "",
-      price: "",
-    });
+    setNewProduct(EMPTY_PRODUCT);
     // set isFormSubmitted to true to show success message
     setIsFormSubmitted(true);
     // clear imageSource
