@@ -5,11 +5,12 @@ import AdminContext from "../../../../context/AdminContext";
 import PrimaryButton from "../../../reusable-ui/PrimaryButton";
 import { formatPrice } from "../../../../utils/maths.jsx";
 import { theme } from "../../../../theme";
+import EmptyMenuAdmin from "./EmptyMenuAdmin.jsx";
+import EmptyMenuClient from "./EmptyMenuClient.jsx";
 
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 const Menu = () => {
-  const { products, handleDelete, isModeAdmin, resetMenu } =
-    useContext(AdminContext);
+  const { products, handleDelete, isModeAdmin } = useContext(AdminContext);
 
   const isValidUrl = (imageUrl) => {
     const imageUrlRegex = /\.(jpeg|jpg|gif|png)$/i;
@@ -20,25 +21,9 @@ const Menu = () => {
     <MenuStyled className={products.length == 0 && "when-empty"}>
       {products.length == 0 ? (
         !isModeAdmin ? (
-          <div className="menu-vide">
-            <p>
-              <strong>Victime de notre succès ! :D</strong>
-            </p>{" "}
-            <br />
-            <p>De nouvelles recettes sont en cours de préparation.</p> <br />
-            <p>À très vite !</p>
-          </div>
+          <EmptyMenuClient />
         ) : (
-          <div className="menu-vide">
-            <p>
-              <strong> Le menu est vide ?</strong>
-            </p>
-            <p>Cliquez ci-dessous pour le réinitialiser</p>
-            <PrimaryButton
-              label={"Générer de nouveaux produits"}
-              onClick={resetMenu}
-            />
-          </div>
+          <EmptyMenuAdmin />
         )
       ) : (
         products.map(({ id, title, imageSource, price }) => {
