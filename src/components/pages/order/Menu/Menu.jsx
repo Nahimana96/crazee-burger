@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { styled } from "styled-components";
-import Product from "./Product";
+import Product from "../../../reusable-ui/Product.jsx";
 import AdminContext from "../../../../context/AdminContext";
 import PrimaryButton from "../../../reusable-ui/PrimaryButton";
 import { formatPrice } from "../../../../utils/maths.jsx";

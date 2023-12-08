@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import PrimaryButton from "../../../reusable-ui/PrimaryButton.jsx";
+import PrimaryButton from "./PrimaryButton.jsx";
 import { styled } from "styled-components";
-import { theme } from "../../../../theme/index.jsx";
+import { theme } from "../../theme/index.jsx";
 import { TiDelete } from "react-icons/ti";
 
 const Product = ({
