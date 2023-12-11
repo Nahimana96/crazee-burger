@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { styled } from "styled-components";
 import Product from "../../../reusable-ui/Product.jsx";
 import AdminContext from "../../../../context/AdminContext";
-import PrimaryButton from "../../../reusable-ui/PrimaryButton";
+import Button from "../../../reusable-ui/Button";
 import { formatPrice } from "../../../../utils/maths.jsx";
 import { theme } from "../../../../theme";
 import EmptyMenuAdmin from "./EmptyMenuAdmin.jsx";

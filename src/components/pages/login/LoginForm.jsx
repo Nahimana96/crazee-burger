@@ -5,7 +5,7 @@ import { BsPersonCircle } from "react-icons/bs";
 import { theme } from "../../../theme";
 import { FaChevronRight } from "react-icons/fa";
 import TextInput from "../../reusable-ui/TextInput";
-import PrimaryButton from "../../reusable-ui/PrimaryButton";
+import Button from "../../reusable-ui/Button";
 
 const LoginForm = () => {
   // state
@@ -39,7 +39,7 @@ const LoginForm = () => {
         required
       />
 
-      <PrimaryButton
+      <Button
         label={"Accéder à mon espace"}
         Icone={<FaChevronRight className="icone" />}
       />

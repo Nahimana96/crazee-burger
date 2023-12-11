@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import PrimaryButton from "./PrimaryButton.jsx";
+import Button from "./Button.jsx";
 import { styled } from "styled-components";
 import { theme } from "../../theme/index.jsx";
 import { TiDelete } from "react-icons/ti";
@@ -25,7 +25,7 @@ const Product = ({
         <h1 className="title">{title}</h1>
         <div className="price-button">
           <p className="price">{leftDescription}</p>
-          <PrimaryButton className="button-ajouter" label="Ajouter" />
+          <Button className="button-ajouter" label="Ajouter" />
         </div>
       </div>
     </ProductStyled>

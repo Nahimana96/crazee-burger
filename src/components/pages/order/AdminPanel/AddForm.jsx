@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { theme } from "../../../../theme";
 import { FiCheckCircle } from "react-icons/fi";
 import AdminContext from "../../../../context/AdminContext";
+import Button from "../../../reusable-ui/Button";
 
 const EMPTY_PRODUCT = {
   id: "",
@@ -51,7 +52,7 @@ const AddForm = () => {
   };
   return (
     <AddFormStyled onSubmit={handleSubmit}>
-      <div className="image-container">
+      <div className="image-preview">
         {imageSource ? (
           <img src={imageSource} alt="image du produit" />
         ) : (
@@ -82,7 +83,7 @@ const AddForm = () => {
         value={newProduct.price}
       />
       <div className="btn-wrapper">
-        <button type="submit">Ajouter un produit au menu</button>
+        <Button label="Ajouter un nouveau produit" version="success" />
         {isFormSubmitted && (
           <p className="success">
             <FiCheckCircle /> Ajouté avec succès
@@ -117,7 +118,7 @@ const AddFormStyled = styled.form`
       color: ${theme.colors.greyBlue};
     }
   }
-  .image-container {
+  .image-preview {
     grid-row: 1 / span 3;
     display: flex;
     color: ${theme.colors.greySemiDark};
@@ -138,16 +139,6 @@ const AddFormStyled = styled.form`
     align-items: center;
     justify-content: flex-start;
     grid-column-start: 2;
-    button {
-      background-color: ${theme.colors.success};
-      font-weight: ${theme.weights.bold};
-      color: white;
-      border: 1px solid ${theme.colors.success};
-      border-radius: 5px;
-      width: 275px;
-      height: 100%;
-      cursor: pointer;
-    }
     p {
       padding-left: 15px;
       color: ${theme.colors.success};
