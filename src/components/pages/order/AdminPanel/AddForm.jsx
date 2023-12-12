@@ -8,6 +8,7 @@ import { theme } from "../../../../theme";
 import { FiCheckCircle } from "react-icons/fi";
 import AdminContext from "../../../../context/AdminContext";
 import Button from "../../../reusable-ui/Button";
+import ImagePreview from "./ImagePreview";
 
 const EMPTY_PRODUCT = {
   id: "",
@@ -22,12 +23,13 @@ const AddForm = () => {
   const { handleAdd } = useContext(AdminContext);
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setNewProduct({
       ...newProduct,
       // dynamic property name [e.target.name]
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
-    e.target.name === "imageSource" && setImageSource(e.target.value);
+    name === "imageSource" && setImageSource(value);
   };
 
   const handleSubmit = (e) => {
@@ -52,13 +54,7 @@ const AddForm = () => {
   };
   return (
     <AddFormStyled onSubmit={handleSubmit}>
-      <div className="image-preview">
-        {imageSource ? (
-          <img src={imageSource} alt="image du produit" />
-        ) : (
-          "Aucune image"
-        )}
-      </div>
+      <ImagePreview imageSource={imageSource} title={newProduct.title} />
       <TextInput
         name="title"
         Icone={<FaHamburger />}
@@ -118,22 +114,7 @@ const AddFormStyled = styled.form`
       color: ${theme.colors.greyBlue};
     }
   }
-  .image-preview {
-    grid-row: 1 / span 3;
-    display: flex;
-    color: ${theme.colors.greySemiDark};
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    border-radius: 5px;
-    border: 1px solid ${theme.colors.greyLight};
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      border-radius: 5px;
-    }
-  }
+
   .btn-wrapper {
     display: flex;
     align-items: center;
