@@ -5,10 +5,10 @@ import { BsFillCameraFill } from "react-icons/bs";
 import { MdOutlineEuroSymbol } from "react-icons/md";
 import styled from "styled-components";
 import { theme } from "../../../../theme";
-import { FiCheckCircle } from "react-icons/fi";
 import AdminContext from "../../../../context/AdminContext";
 import Button from "../../../reusable-ui/Button";
 import ImagePreview from "./ImagePreview";
+import SubmitMessage from "./SubmitMessage";
 
 const EMPTY_PRODUCT = {
   id: "",
@@ -80,11 +80,7 @@ const AddForm = () => {
       />
       <div className="btn-wrapper">
         <Button label="Ajouter un nouveau produit" version="success" />
-        {isFormSubmitted && (
-          <p className="success">
-            <FiCheckCircle /> Ajouté avec succès
-          </p>
-        )}
+        {isFormSubmitted && <SubmitMessage />}
       </div>
     </AddFormStyled>
   );
@@ -120,10 +116,6 @@ const AddFormStyled = styled.form`
     align-items: center;
     justify-content: flex-start;
     grid-column-start: 2;
-    p {
-      padding-left: 15px;
-      color: ${theme.colors.success};
-    }
   }
 `;
 export default AddForm;
