@@ -1,8 +1,6 @@
 import React, { useContext, useState } from "react";
 import TextInput from "../../../reusable-ui/TextInput";
-import { FaHamburger } from "react-icons/fa";
-import { BsFillCameraFill } from "react-icons/bs";
-import { MdOutlineEuroSymbol } from "react-icons/md";
+import { getInputTextCOnfig } from "./inputTextConfig";
 import styled from "styled-components";
 import { theme } from "../../../../theme";
 import AdminContext from "../../../../context/AdminContext";
@@ -40,7 +38,6 @@ const AddForm = () => {
     };
     // add the new product
     handleAdd(newProductToAdd);
-
     // clear all input values
     setNewProduct(EMPTY_PRODUCT);
     // set isFormSubmitted to true to show success message
@@ -52,32 +49,18 @@ const AddForm = () => {
       setIsFormSubmitted(false);
     }, 2000);
   };
+
+  const inputTexts = getInputTextCOnfig(newProduct);
   return (
     <AddFormStyled onSubmit={handleSubmit}>
       <ImagePreview imageSource={imageSource} title={newProduct.title} />
-      <TextInput
-        name="title"
-        Icone={<FaHamburger />}
-        placeholder={"Nom du produit (ex: Super Burger)"}
-        onChange={handleChange}
-        value={newProduct.title}
-      />
-      <TextInput
-        name="imageSource"
-        Icone={<BsFillCameraFill />}
-        placeholder={
-          "Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)"
-        }
-        value={newProduct.imageSource}
-        onChange={handleChange}
-      />
-      <TextInput
-        name="price"
-        Icone={<MdOutlineEuroSymbol />}
-        placeholder={"Prix"}
-        onChange={handleChange}
-        value={newProduct.price}
-      />
+
+      <div className="input-fields">
+        {inputTexts.map((input) => (
+          <TextInput key={input.id} {...input} onChange={handleChange} />
+        ))}
+      </div>
+
       <div className="btn-wrapper">
         <Button label="Ajouter un nouveau produit" version="success" />
         {isFormSubmitted && <SubmitMessage />}
