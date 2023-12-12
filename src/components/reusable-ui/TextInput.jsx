@@ -4,7 +4,7 @@ import { theme } from "../../theme";
 
 const TextInput = ({ value, onChange, Icone, ...extraProps }) => {
   return (
-    <TextInputStyled className="wrapper">
+    <TextInputStyled className="input-fields">
       {Icone && Icone}
       <input value={value} onChange={onChange} type="text" {...extraProps} />
     </TextInputStyled>

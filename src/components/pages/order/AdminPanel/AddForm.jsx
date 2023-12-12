@@ -55,13 +55,11 @@ const AddForm = () => {
     <AddFormStyled onSubmit={handleSubmit}>
       <ImagePreview imageSource={imageSource} title={newProduct.title} />
 
-      <div className="input-fields">
-        {inputTexts.map((input) => (
-          <TextInput key={input.id} {...input} onChange={handleChange} />
-        ))}
-      </div>
+      {inputTexts.map((input) => (
+        <TextInput key={input.id} {...input} onChange={handleChange} />
+      ))}
 
-      <div className="btn-wrapper">
+      <div className="submit-container">
         <Button label="Ajouter un nouveau produit" version="success" />
         {isFormSubmitted && <SubmitMessage />}
       </div>
@@ -78,7 +76,7 @@ const AddFormStyled = styled.form`
   column-gap: 20px;
   row-gap: 8px;
 
-  .wrapper {
+  .input-fields {
     grid-column-start: 2;
     height: 100%;
     align-items: center;
@@ -94,7 +92,7 @@ const AddFormStyled = styled.form`
     }
   }
 
-  .btn-wrapper {
+  .submit-container {
     display: flex;
     align-items: center;
     justify-content: flex-start;
