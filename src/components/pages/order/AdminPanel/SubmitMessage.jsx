@@ -6,17 +6,16 @@ import { theme } from "../../../../theme";
 const SubmitMessage = () => {
   return (
     <StyledSubmitMessage className="submit-message">
-      <span className="message">
-        <FiCheckCircle />
-        Ajouté avec succès
-      </span>
+      <FiCheckCircle />
+      <span>Ajouté avec succès</span>
     </StyledSubmitMessage>
   );
 };
 const StyledSubmitMessage = styled.div`
-  .message {
-    padding-left: 15px;
-    color: ${theme.colors.success};
+  padding-left: 15px;
+  color: ${theme.colors.success};
+  span {
+    padding-left: 5px;
   }
 `;
 export default SubmitMessage;

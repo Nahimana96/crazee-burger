@@ -2,20 +2,15 @@ import React, { useContext } from "react";
 import { styled } from "styled-components";
 import Product from "../../../reusable-ui/Product.jsx";
 import AdminContext from "../../../../context/AdminContext";
-import Button from "../../../reusable-ui/Button";
 import { formatPrice } from "../../../../utils/maths.jsx";
 import { theme } from "../../../../theme";
 import EmptyMenuAdmin from "./EmptyMenuAdmin.jsx";
 import EmptyMenuClient from "./EmptyMenuClient.jsx";
+import { isValidUrl } from "../../../../utils/ValidUrl.jsx";
 
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 const Menu = () => {
   const { products, handleDelete, isModeAdmin } = useContext(AdminContext);
-
-  const isValidUrl = (imageUrl) => {
-    const imageUrlRegex = /\.(jpeg|jpg|gif|png)$/i;
-    return imageUrlRegex.test(imageUrl);
-  };
 
   return (
     <MenuStyled className={products.length == 0 && "when-empty"}>
