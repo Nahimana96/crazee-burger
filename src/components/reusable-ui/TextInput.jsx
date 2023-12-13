@@ -4,14 +4,14 @@ import { theme } from "../../theme";
 
 const TextInput = ({ value, onChange, Icone, ...extraProps }) => {
   return (
-    <InputStyled className="wrapper">
+    <TextInputStyled className="input-fields">
       {Icone && Icone}
       <input value={value} onChange={onChange} type="text" {...extraProps} />
-    </InputStyled>
+    </TextInputStyled>
   );
 };
 
-const InputStyled = styled.div`
+const TextInputStyled = styled.div`
   display: flex;
   justify-content: flex-start;
 

@@ -1,44 +1,38 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-import { AiOutlinePlus } from "react-icons/ai";
-import { MdModeEditOutline } from "react-icons/md";
 import styled from "styled-components";
 import Tab from "../../../reusable-ui/Tab";
-const AdminTabs = ({
-  isPanelOpened,
-  setIsPanelOpened,
-  addIsActive,
-  setAddIsActive,
-  modifyIsActive,
-  setModifyIsActive,
-}) => {
+import AdminContext from "../../../../context/AdminContext";
+import { getTabsConfig } from "./getTabsConfig";
+const AdminTabs = () => {
+  const {
+    isPanelOpened,
+    setIsPanelOpened,
+    currentTabSelected,
+    setCurrentTabSelected,
+  } = useContext(AdminContext);
+
+  const selectTab = (selectedTab) => {
+    setIsPanelOpened(true);
+    setCurrentTabSelected(selectedTab);
+  };
+  const tabs = getTabsConfig;
   return (
     <AdminTabsStyled>
       <Tab
+        icone={isPanelOpened ? <FaChevronDown /> : <FaChevronUp />}
         onClick={() => setIsPanelOpened(!isPanelOpened)}
         className={`${!isPanelOpened ? "active-button" : ""} hide-span`}
-        icone={isPanelOpened ? <FaChevronDown /> : <FaChevronUp />}
       />
-      <Tab
-        className={`${addIsActive ? "active-button" : ""}`}
-        onClick={() => {
-          setAddIsActive(true);
-          setModifyIsActive(false);
-          setIsPanelOpened(true);
-        }}
-        icone={<AiOutlinePlus />}
-        text={"Ajouter un produit"}
-      />
-      <Tab
-        className={`${modifyIsActive ? "active-button" : ""}`}
-        onClick={() => {
-          setAddIsActive(false);
-          setModifyIsActive(true);
-          setIsPanelOpened(true);
-        }}
-        icone={<MdModeEditOutline />}
-        text={"Modifier un produit"}
-      />
+      {tabs.map((tab, index) => (
+        <Tab
+          key={index}
+          text={tab.label}
+          icone={tab.icon}
+          onClick={() => selectTab(tab.index)}
+          className={currentTabSelected === tab.index ? "active-button" : ""}
+        />
+      ))}
     </AdminTabsStyled>
   );
 };

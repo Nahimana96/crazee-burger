@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Logo from "../../../reusable-ui/Logo";
 import { styled } from "styled-components";
 import { theme } from "../../../../theme";
@@ -8,8 +8,10 @@ import { refreshPage } from "../../../../utils/window";
 import ToggleButton from "../../../reusable-ui/ToggleButton";
 import { toast } from "react-toastify";
 import ToastAdmin from "./ToastAdmin";
+import AdminContext from "../../../../context/AdminContext";
 
-const Navbar = ({ prenom, isModeAdmin, setIsModeAdmin }) => {
+const Navbar = () => {
+  const { isModeAdmin, setIsModeAdmin } = useContext(AdminContext);
   const onToggle = () => {
     !isModeAdmin &&
       toast.info("Mode admin activé", {
@@ -37,7 +39,7 @@ const Navbar = ({ prenom, isModeAdmin, setIsModeAdmin }) => {
           labelIfChecked="DÉSACTIVER LE MODE ADMIN"
           labelIfUnchecked="ACTIVER LE MODE ADMIN"
         />
-        <Profil prenom={prenom} />
+        <Profil />
         <ToastAdmin />
       </div>
     </NavbarStyled>

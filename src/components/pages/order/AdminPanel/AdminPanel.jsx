@@ -1,34 +1,26 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { theme } from "../../../../theme";
-import AdminContext from "../../../../context/AdminContext";
 import AdminTabs from "./AdminTabs";
+import AdminContext from "../../../../context/AdminContext";
+import { getTabSelected, getTabsConfig } from "./getTabsConfig";
+import AddForm from "./AddForm";
+import EditForm from "./EditForm";
 const AdminPanel = () => {
-  const [isPanelOpened, setIsPanelOpened] = useState(false);
-  const [addIsActive, setAddIsActive] = useState(true);
-  const [modifyIsActive, setModifyIsActive] = useState(false);
-  const { isModeAdmin } = useContext(AdminContext);
+  const { isPanelOpened, currentTabSelected } = useContext(AdminContext);
+
+  const tabs = getTabsConfig;
+  // const tabSelected = getTabSelected(tabs, currentTabSelected);
   return (
-    isModeAdmin && (
-      <AdminPanelStyled>
-        <div
-          className={`panel-container ${
-            isPanelOpened ? "appear" : "disappear"
-          }`}
-        >
-          {addIsActive && <div>Ajouter un produit</div>}
-          {modifyIsActive && <div>Modifier un produit</div>}
-          <AdminTabs
-            isPanelOpened={isPanelOpened}
-            setIsPanelOpened={setIsPanelOpened}
-            addIsActive={addIsActive}
-            setAddIsActive={setAddIsActive}
-            modifyIsActive={modifyIsActive}
-            setModifyIsActive={setModifyIsActive}
-          />
-        </div>
-      </AdminPanelStyled>
-    )
+    <AdminPanelStyled>
+      <div
+        className={`panel-container ${isPanelOpened ? "appear" : "disappear"}`}
+      >
+        {currentTabSelected === "add" && <AddForm />}
+        {currentTabSelected === "edit" && <EditForm />}
+        <AdminTabs />
+      </div>
+    </AdminPanelStyled>
   );
 };
 
@@ -43,7 +35,7 @@ const AdminPanelStyled = styled.div`
   }
   .panel-container {
     position: absolute;
-    padding: 20px;
+    padding: 30px 70px;
     width: 100%;
     height: 250px;
     left: 0;

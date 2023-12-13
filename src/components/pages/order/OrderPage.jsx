@@ -1,28 +1,53 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
 import Navbar from "./Navbar/Navbar";
 import { styled } from "styled-components";
 import { theme } from "../../../theme";
 import Main from "./Menu/Main";
 import AdminContext from "../../../context/AdminContext";
+import { fakeMenu2 } from "../../../data/fakeMenu";
 
 const OrderPage = () => {
-  const { prenom } = useParams();
   const [isModeAdmin, setIsModeAdmin] = useState(false);
+  const [isPanelOpened, setIsPanelOpened] = useState(false);
+  const [currentTabSelected, setCurrentTabSelected] = useState("add");
+  const [products, setProducts] = useState(fakeMenu2);
+  const handleAdd = (newProduct) => {
+    const copyOfProducts = [...products];
+    const productsUpdated = [newProduct, ...copyOfProducts];
+    setProducts(productsUpdated);
+  };
+
+  const handleDelete = (id) => {
+    const copyOfProducts = [...products];
+    const productsUpdated = copyOfProducts.filter(
+      (product) => product.id !== id
+    );
+    setProducts(productsUpdated);
+  };
+
+  const resetMenu = () => {
+    setProducts(fakeMenu2);
+  };
   const adminContextValue = {
     isModeAdmin,
+    setIsModeAdmin,
+    isPanelOpened,
+    setIsPanelOpened,
+    currentTabSelected,
+    setCurrentTabSelected,
+    products,
+    setProducts,
+    handleAdd,
+    handleDelete,
+    resetMenu,
   };
   return (
-    <OrderPageStyled>
-      <Navbar
-        prenom={prenom}
-        isModeAdmin={isModeAdmin}
-        setIsModeAdmin={setIsModeAdmin}
-      />
-      <AdminContext.Provider value={adminContextValue}>
+    <AdminContext.Provider value={adminContextValue}>
+      <OrderPageStyled>
+        <Navbar />
         <Main />
-      </AdminContext.Provider>
-    </OrderPageStyled>
+      </OrderPageStyled>
+    </AdminContext.Provider>
   );
 };
 

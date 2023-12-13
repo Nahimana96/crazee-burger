@@ -2,12 +2,15 @@ import { styled } from "styled-components";
 import { theme } from "../../../../theme";
 import Menu from "./Menu";
 import AdminPanel from "../AdminPanel/AdminPanel";
-
+import { useContext } from "react";
+import AdminContext from "../../../../context/AdminContext";
 const Main = () => {
+  const { isModeAdmin } = useContext(AdminContext);
+
   return (
     <MainStyled>
       <Menu />
-      <AdminPanel />
+      {isModeAdmin && <AdminPanel />}
     </MainStyled>
   );
 };
@@ -21,5 +24,10 @@ const MainStyled = styled.div`
   width: 100%;
   max-width: 1400px;
   overflow-y: hidden;
+  .when-empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 export default Main;

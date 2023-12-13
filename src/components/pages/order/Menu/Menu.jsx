@@ -1,29 +1,48 @@
-import React from "react";
-import { useState } from "react";
-import { fakeMenu2 } from "../../../../data/fakeMenu";
+import React, { useContext } from "react";
 import { styled } from "styled-components";
-import Product from "./Product";
+import Product from "../../../reusable-ui/Product.jsx";
+import AdminContext from "../../../../context/AdminContext";
+import { formatPrice } from "../../../../utils/maths.jsx";
+import { theme } from "../../../../theme";
+import EmptyMenuAdmin from "./EmptyMenuAdmin.jsx";
+import EmptyMenuClient from "./EmptyMenuClient.jsx";
+import { isValidUrl } from "../../../../utils/ValidUrl.jsx";
+
+const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 const Menu = () => {
-  const [products, setProducts] = useState(fakeMenu2);
+  const { products, handleDelete, isModeAdmin } = useContext(AdminContext);
+
   return (
-    <MenuStyled>
-      {products.map((product) => {
-        return (
-          <Product
-            key={product.id}
-            title={product.title}
-            imageSource={product.imageSource}
-            price={product.price}
-          />
-        );
-      })}
+    <MenuStyled className={products.length == 0 && "when-empty"}>
+      {products.length == 0 ? (
+        !isModeAdmin ? (
+          <EmptyMenuClient />
+        ) : (
+          <EmptyMenuAdmin />
+        )
+      ) : (
+        products.map(({ id, title, imageSource, price }) => {
+          return (
+            <Product
+              onDelete={() => handleDelete(id)}
+              key={id}
+              title={title}
+              imageSource={
+                isValidUrl(imageSource) ? imageSource : IMAGE_BY_DEFAULT
+              }
+              leftDescription={formatPrice(price)}
+              hasDeleteButton={isModeAdmin}
+            />
+          );
+        })
+      )}
     </MenuStyled>
   );
 };
 const MenuStyled = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  column-gap: 85px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  column-gap: 70px;
   row-gap: 60px;
   width: 100%;
   height: 100%;
@@ -32,6 +51,16 @@ const MenuStyled = styled.div`
 
   &::-webkit-scrollbar {
     display: none;
+  }
+  .menu-vide {
+    align-items: center;
+    text-align: center;
+    p,
+    strong {
+      font-family: "Amatic SC", cursive;
+      padding-bottom: 20px;
+      font-size: ${theme.fonts.P4};
+    }
   }
 `;
 export default Menu;
