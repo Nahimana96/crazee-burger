@@ -24,6 +24,7 @@ const Menu = () => {
         products.map(({ id, title, imageSource, price }) => {
           return (
             <Product
+              className={isModeAdmin && "admin-mode-card"}
               onDelete={() => handleDelete(id)}
               key={id}
               title={title}
@@ -32,6 +33,7 @@ const Menu = () => {
               }
               leftDescription={formatPrice(price)}
               hasDeleteButton={isModeAdmin}
+              clickToEdit={() => console.log(id, title, imageSource)}
             />
           );
         })
@@ -51,6 +53,15 @@ const MenuStyled = styled.div`
 
   &::-webkit-scrollbar {
     display: none;
+  }
+  .admin-mode-card {
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      box-shadow: -8px 8px 20px 0px #ffa01b;
+      transform: scale(1.03);
+      transition: all 0.3s ease-in-out;
+    }
   }
   .menu-vide {
     align-items: center;

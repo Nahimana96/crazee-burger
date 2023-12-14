@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import Button from "./Button.jsx";
 import { styled } from "styled-components";
 import { theme } from "../../theme/index.jsx";
@@ -10,9 +10,11 @@ const Product = ({
   imageSource,
   onDelete,
   hasDeleteButton,
+  className,
+  clickToEdit,
 }) => {
   return (
-    <ProductStyled>
+    <ProductStyled className={className} onClick={clickToEdit}>
       {hasDeleteButton && (
         <div className="delete-button" onClick={onDelete}>
           <TiDelete />
