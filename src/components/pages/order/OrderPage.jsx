@@ -28,6 +28,11 @@ const OrderPage = () => {
   const resetMenu = () => {
     setProducts(fakeMenu2);
   };
+
+  const editProduct = () => {
+    setIsPanelOpened(true);
+    setCurrentTabSelected("edit");
+  };
   const adminContextValue = {
     isModeAdmin,
     setIsModeAdmin,
@@ -40,6 +45,7 @@ const OrderPage = () => {
     handleAdd,
     handleDelete,
     resetMenu,
+    editProduct,
   };
   return (
     <AdminContext.Provider value={adminContextValue}>

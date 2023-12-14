@@ -10,7 +10,8 @@ import { isValidUrl } from "../../../../utils/ValidUrl.jsx";
 
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 const Menu = () => {
-  const { products, handleDelete, isModeAdmin } = useContext(AdminContext);
+  const { products, handleDelete, isModeAdmin, editProduct } =
+    useContext(AdminContext);
 
   return (
     <MenuStyled className={products.length == 0 && "when-empty"}>
@@ -33,7 +34,7 @@ const Menu = () => {
               }
               leftDescription={formatPrice(price)}
               hasDeleteButton={isModeAdmin}
-              clickToEdit={() => console.log(id, title, imageSource)}
+              clickToEdit={editProduct}
             />
           );
         })
