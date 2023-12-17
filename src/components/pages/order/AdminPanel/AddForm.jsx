@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import TextInput from "../../../reusable-ui/TextInput";
-import { getInputTextCOnfig } from "./inputTextConfig";
+import { getInputTextConfig } from "./inputTextConfig";
 import styled from "styled-components";
 import { theme } from "../../../../theme";
 import AdminContext from "../../../../context/AdminContext";
@@ -50,7 +50,7 @@ const AddForm = () => {
     }, 2000);
   };
 
-  const inputTexts = getInputTextCOnfig(newProduct);
+  const inputTexts = getInputTextConfig(newProduct);
   return (
     <AddFormStyled onSubmit={handleSubmit}>
       <ImagePreview imageSource={imageSource} title={newProduct.title} />

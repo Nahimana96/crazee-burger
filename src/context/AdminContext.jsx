@@ -17,4 +17,9 @@ export default createContext({
   handleDelete: () => {},
   resetMenu: () => {},
   editProduct: () => {},
+  productToEdit: {},
+  setProductToEdit: () => {},
+  inputRef: {},
+  isEditFormRendered: false,
+  setIsEditFormRendered: () => {},
 });

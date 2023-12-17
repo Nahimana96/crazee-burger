@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Navbar from "./Navbar/Navbar";
 import { styled } from "styled-components";
 import { theme } from "../../../theme";
@@ -11,6 +11,10 @@ const OrderPage = () => {
   const [isPanelOpened, setIsPanelOpened] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [products, setProducts] = useState(fakeMenu2);
+  const [productToEdit, setProductToEdit] = useState({});
+  const [isEditFormRendered, setIsEditFormRendered] = useState(false);
+  const inputRef = useRef();
+
   const handleAdd = (newProduct) => {
     const copyOfProducts = [...products];
     const productsUpdated = [newProduct, ...copyOfProducts];
@@ -29,10 +33,18 @@ const OrderPage = () => {
     setProducts(fakeMenu2);
   };
 
-  const editProduct = () => {
+  const editProduct = (product) => {
     setIsPanelOpened(true);
     setCurrentTabSelected("edit");
+    setProductToEdit(product);
+    setIsEditFormRendered(true);
   };
+
+  useEffect(() => {
+    isEditFormRendered && inputRef.current.focus();
+    return setIsEditFormRendered(false);
+  }, [isEditFormRendered]);
+
   const adminContextValue = {
     isModeAdmin,
     setIsModeAdmin,
@@ -46,6 +58,11 @@ const OrderPage = () => {
     handleDelete,
     resetMenu,
     editProduct,
+    productToEdit,
+    setProductToEdit,
+    inputRef,
+    isEditFormRendered,
+    setIsEditFormRendered,
   };
   return (
     <AdminContext.Provider value={adminContextValue}>

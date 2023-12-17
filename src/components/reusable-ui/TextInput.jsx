@@ -2,14 +2,22 @@ import React from "react";
 import { styled } from "styled-components";
 import { theme } from "../../theme";
 
-const TextInput = ({ value, onChange, Icone, ...extraProps }) => {
-  return (
-    <TextInputStyled className="input-fields">
-      {Icone && Icone}
-      <input value={value} onChange={onChange} type="text" {...extraProps} />
-    </TextInputStyled>
-  );
-};
+const TextInput = React.forwardRef(
+  ({ value, onChange, Icone, ...extraProps }, ref) => {
+    return (
+      <TextInputStyled className="input-fields">
+        {Icone && Icone}
+        <input
+          value={value}
+          onChange={onChange}
+          type="text"
+          ref={ref}
+          {...extraProps}
+        />
+      </TextInputStyled>
+    );
+  }
+);
 
 const TextInputStyled = styled.div`
   display: flex;
