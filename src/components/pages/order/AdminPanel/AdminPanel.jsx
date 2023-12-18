@@ -4,20 +4,19 @@ import { theme } from "../../../../theme";
 import AdminTabs from "./AdminTabs";
 import AdminContext from "../../../../context/AdminContext";
 import { getTabSelected, getTabsConfig } from "./getTabsConfig";
-import AddForm from "./AddForm";
-import EditForm from "./EditForm";
+// import AddForm from "./AddForm";
+// import EditForm from "./EditForm";
 const AdminPanel = () => {
   const { isPanelOpened, currentTabSelected } = useContext(AdminContext);
 
   const tabs = getTabsConfig;
-  // const tabSelected = getTabSelected(tabs, currentTabSelected);
+  const tabSelected = getTabSelected(tabs, currentTabSelected);
   return (
     <AdminPanelStyled>
       <div
         className={`panel-container ${isPanelOpened ? "appear" : "disappear"}`}
       >
-        {currentTabSelected === "add" && <AddForm />}
-        {currentTabSelected === "edit" && <EditForm />}
+        {tabSelected && tabSelected.content}
         <AdminTabs />
       </div>
     </AdminPanelStyled>

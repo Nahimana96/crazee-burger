@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { HiCursorClick } from "react-icons/hi";
+
 import styled from "styled-components";
 import { theme } from "../../../../theme";
 import AdminContext from "../../../../context/AdminContext";
@@ -7,6 +7,7 @@ import ImagePreview from "./ImagePreview";
 import TextInput from "../../../reusable-ui/TextInput";
 import { getInputTextConfig } from "./inputTextConfig";
 import { FaHamburger } from "react-icons/fa";
+import HintMessage from "./HintMessage";
 
 const EditForm = () => {
   const { productToEdit, inputRef } = useContext(AdminContext);
@@ -14,26 +15,21 @@ const EditForm = () => {
 
   return (
     <EditFormStyled>
-      {Object.keys(productToEdit).length == 0 ? (
-        <div className="edit-message">
-          <span>CLIQUER SUR UN PRODUIT POUR LE MODIFIER</span>
-          <HiCursorClick />
-        </div>
+      {Object.keys(productToEdit).length === 0 ? (
+        <HintMessage />
       ) : (
         <div className="edit-form">
           <ImagePreview
             imageSource={productToEdit.imageSource}
             title={productToEdit.title}
           />
-          {inputRef && (
-            <TextInput
-              ref={inputRef}
-              Icone={<FaHamburger />}
-              value={productToEdit.title}
-              placeholder="Nom du produit (ex: Super Burger)"
-              onChange={() => {}}
-            />
-          )}
+          <TextInput
+            ref={inputRef}
+            Icone={<FaHamburger />}
+            value={productToEdit.title}
+            placeholder="Nom du produit (ex: Super Burger)"
+            onChange={() => {}}
+          />
           {inputTexts
             .filter((input) => input.id !== 0)
             .map((input) => (
@@ -69,16 +65,6 @@ const EditFormStyled = styled.div`
       svg {
         color: ${theme.colors.greyBlue};
       }
-    }
-  }
-  .edit-message {
-    margin-top: 81px;
-    margin-left: 71px;
-    span {
-      font-family: Amatic SC, "serif";
-      font-size: ${theme.fonts.P3};
-      line-height: normal;
-      padding-right: 9px;
     }
   }
 `;

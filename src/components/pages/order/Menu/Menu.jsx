@@ -34,11 +34,7 @@ const Menu = () => {
               }
               leftDescription={formatPrice(price)}
               hasDeleteButton={isModeAdmin}
-              clickToEdit={
-                isModeAdmin
-                  ? () => editProduct({ id, title, imageSource, price })
-                  : () => {}
-              }
+              clickToEdit={isModeAdmin ? () => editProduct(id) : () => {}}
             />
           );
         })

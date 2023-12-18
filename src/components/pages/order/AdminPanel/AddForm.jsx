@@ -7,13 +7,8 @@ import AdminContext from "../../../../context/AdminContext";
 import Button from "../../../reusable-ui/Button";
 import ImagePreview from "./ImagePreview";
 import SubmitMessage from "./SubmitMessage";
+import { EMPTY_PRODUCT } from "../../../../enums/product";
 
-const EMPTY_PRODUCT = {
-  id: "",
-  title: "",
-  imageSource: "",
-  price: "",
-};
 const AddForm = () => {
   const [imageSource, setImageSource] = useState("");
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);

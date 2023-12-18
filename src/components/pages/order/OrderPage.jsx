@@ -1,17 +1,17 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import Navbar from "./Navbar/Navbar";
 import { styled } from "styled-components";
 import { theme } from "../../../theme";
 import Main from "./Menu/Main";
 import AdminContext from "../../../context/AdminContext";
 import { fakeMenu2 } from "../../../data/fakeMenu";
-
+import { EMPTY_PRODUCT } from "../../../enums/product";
 const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [isPanelOpened, setIsPanelOpened] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [products, setProducts] = useState(fakeMenu2);
-  const [productToEdit, setProductToEdit] = useState({});
+  const [productToEdit, setProductToEdit] = useState({ EMPTY_PRODUCT });
   const [isEditFormRendered, setIsEditFormRendered] = useState(false);
   const inputRef = useRef();
 
@@ -33,17 +33,21 @@ const OrderPage = () => {
     setProducts(fakeMenu2);
   };
 
-  const editProduct = (product) => {
+  const editProduct = (idProductClicked) => {
+    const productSelected = products.find(
+      (product) => product.id == idProductClicked
+    );
     setIsPanelOpened(true);
     setCurrentTabSelected("edit");
-    setProductToEdit(product);
+    setProductToEdit(productSelected);
     setIsEditFormRendered(true);
+    focusOnInput();
   };
-
-  useEffect(() => {
-    isEditFormRendered && inputRef.current.focus();
-    return setIsEditFormRendered(false);
-  }, [isEditFormRendered]);
+  const focusOnInput = () => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  };
 
   const adminContextValue = {
     isModeAdmin,
