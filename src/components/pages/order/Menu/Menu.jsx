@@ -41,8 +41,11 @@ const Menu = () => {
           return (
             <Product
               className={
-                (isModeAdmin && "edit-mode",
-                productToEdit.id === id && isModeAdmin && "selected-product")
+                !isModeAdmin
+                  ? ""
+                  : productToEdit.id === id
+                  ? "selected-product"
+                  : "edit-mode"
               }
               onDelete={() => handleDelete(id)}
               key={id}
@@ -77,13 +80,13 @@ const MenuStyled = styled.div`
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     &:hover {
-      box-shadow: -8px 8px 20px 0px #ffa01b;
+      box-shadow: 0px 0px 8px 0px #ff9a23;
       transform: scale(1.03);
       transition: all 0.3s ease-in-out;
     }
   }
   .selected-product {
-    border: #ffa01b 2px solid;
+    border: #ff9a23 2px solid;
   }
   .menu-vide {
     align-items: center;
