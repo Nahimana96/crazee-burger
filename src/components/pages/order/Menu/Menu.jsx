@@ -86,7 +86,38 @@ const MenuStyled = styled.div`
     }
   }
   .selected-product {
-    border: #ff9a23 2px solid;
+    background: #ffa01b !important;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      box-shadow: 0px 0px 8px 0px #ff9a23;
+      transform: scale(1.03);
+      transition: all 0.3s ease-in-out;
+    }
+    .delete-button {
+      :hover {
+        color: ${theme.colors.redSecondary} !important;
+      }
+      :active {
+        color: ${theme.colors.white};
+      }
+      svg {
+        color: ${theme.colors.white} !important;
+      }
+    }
+    .text-info .price-button {
+      .price {
+        color: ${theme.colors.white};
+      }
+      .button-ajouter {
+        background-color: ${theme.colors.white} !important;
+        color: ${theme.colors.primary};
+        &:hover {
+          border: 1px solid ${theme.colors.white};
+          color: ${theme.colors.white};
+          background-color: ${theme.colors.primary} !important;
+        }
+      }
+    }
   }
   .menu-vide {
     align-items: center;

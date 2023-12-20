@@ -53,8 +53,10 @@ const ProductStyled = styled.div`
     top: 15px;
     right: 15px;
     cursor: pointer;
+    transition: all 0.3s ease-in-out;
     :hover {
       color: ${theme.colors.redSecondary};
+      transition: all 0.3s ease-in-out;
     }
     :active {
       color: ${theme.colors.primary};
