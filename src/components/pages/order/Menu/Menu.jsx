@@ -17,6 +17,7 @@ const Menu = () => {
     setProductToEdit,
     setIsPanelOpened,
     setCurrentTabSelected,
+    productToEdit,
   } = useContext(AdminContext);
 
   const handleClick = (idOfProductClicked) => {
@@ -39,7 +40,10 @@ const Menu = () => {
         products.map(({ id, title, imageSource, price }) => {
           return (
             <Product
-              className={isModeAdmin && "admin-mode-card"}
+              className={
+                (isModeAdmin && "edit-mode",
+                productToEdit.id === id && isModeAdmin && "selected-product")
+              }
               onDelete={() => handleDelete(id)}
               key={id}
               title={title}
@@ -69,7 +73,7 @@ const MenuStyled = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-  .admin-mode-card {
+  .edit-mode {
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     &:hover {
@@ -77,6 +81,9 @@ const MenuStyled = styled.div`
       transform: scale(1.03);
       transition: all 0.3s ease-in-out;
     }
+  }
+  .selected-product {
+    border: #ffa01b 2px solid;
   }
   .menu-vide {
     align-items: center;
