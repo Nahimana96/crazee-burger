@@ -22,7 +22,7 @@ const EditForm = () => {
   };
   return (
     <EditFormStyled>
-      {Object.keys(productToEdit).length === 0 ? (
+      {productToEdit.id == undefined ? (
         <HintMessage />
       ) : (
         <div className="edit-form">
@@ -34,6 +34,13 @@ const EditForm = () => {
           {inputTexts.map((input) => (
             <TextInput key={input.id} {...input} onChange={handleChange} />
           ))}
+
+          <div className="message">
+            <p>
+              Cliquer sur un produit du menu pour le modifier{" "}
+              <span>en temps réel</span>
+            </p>
+          </div>
         </div>
       )}
     </EditFormStyled>
@@ -63,6 +70,15 @@ const EditFormStyled = styled.div`
       }
       svg {
         color: ${theme.colors.greyBlue};
+      }
+    }
+    .message {
+      font-family: Open Sans;
+      font-size: ${theme.fonts.P0};
+      grid-column-start: 2;
+      color: ${theme.colors.primary};
+      span {
+        text-decoration: underline;
       }
     }
   }
