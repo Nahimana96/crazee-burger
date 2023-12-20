@@ -10,9 +10,23 @@ import { isValidUrl } from "../../../../utils/ValidUrl.jsx";
 
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 const Menu = () => {
-  const { products, handleDelete, isModeAdmin, editProduct } =
-    useContext(AdminContext);
+  const {
+    products,
+    handleDelete,
+    isModeAdmin,
+    setProductToEdit,
+    setIsPanelOpened,
+    setCurrentTabSelected,
+  } = useContext(AdminContext);
 
+  const handleClick = (idOfProductClicked) => {
+    const productInfo = products.find(
+      (product) => product.id == idOfProductClicked
+    );
+    setProductToEdit(productInfo);
+    setIsPanelOpened(true);
+    setCurrentTabSelected("edit");
+  };
   return (
     <MenuStyled className={products.length == 0 && "when-empty"}>
       {products.length == 0 ? (
@@ -34,7 +48,7 @@ const Menu = () => {
               }
               leftDescription={formatPrice(price)}
               hasDeleteButton={isModeAdmin}
-              clickToEdit={isModeAdmin ? () => editProduct(id) : () => {}}
+              clickToEdit={isModeAdmin ? () => handleClick(id) : () => {}}
             />
           );
         })

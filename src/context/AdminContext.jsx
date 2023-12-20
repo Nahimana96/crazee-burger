@@ -16,10 +16,8 @@ export default createContext({
   handleAdd: () => {},
   handleDelete: () => {},
   resetMenu: () => {},
-  editProduct: () => {},
+  handleEdit: () => {},
   productToEdit: {},
   setProductToEdit: () => {},
   inputRef: {},
-  isEditFormRendered: false,
-  setIsEditFormRendered: () => {},
 });

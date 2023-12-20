@@ -12,7 +12,6 @@ const OrderPage = () => {
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [products, setProducts] = useState(fakeMenu2);
   const [productToEdit, setProductToEdit] = useState({ EMPTY_PRODUCT });
-  const [isEditFormRendered, setIsEditFormRendered] = useState(false);
   const inputRef = useRef();
 
   const handleAdd = (newProduct) => {
@@ -33,15 +32,19 @@ const OrderPage = () => {
     setProducts(fakeMenu2);
   };
 
-  const editProduct = (idProductClicked) => {
-    const productSelected = products.find(
-      (product) => product.id == idProductClicked
+  const handleEdit = (productBeingEdited) => {
+    // copie du state (deep clone)
+    const copyOfProducts = JSON.parse(JSON.stringify(products));
+
+    // manip de la copie du state
+    const indexOfProductToEdit = copyOfProducts.findIndex(
+      (product) => product.id === productBeingEdited.id
     );
-    setIsPanelOpened(true);
-    setCurrentTabSelected("edit");
-    setProductToEdit(productSelected);
-    setIsEditFormRendered(true);
-    focusOnInput();
+
+    copyOfProducts[indexOfProductToEdit] = productBeingEdited;
+
+    // update du state
+    setProducts(copyOfProducts);
   };
   const focusOnInput = () => {
     if (inputRef.current) {
@@ -61,12 +64,10 @@ const OrderPage = () => {
     handleAdd,
     handleDelete,
     resetMenu,
-    editProduct,
+    handleEdit,
     productToEdit,
     setProductToEdit,
     inputRef,
-    isEditFormRendered,
-    setIsEditFormRendered,
   };
   return (
     <AdminContext.Provider value={adminContextValue}>

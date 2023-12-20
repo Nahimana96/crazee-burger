@@ -1,18 +1,25 @@
 import React, { useContext } from "react";
-
 import styled from "styled-components";
 import { theme } from "../../../../theme";
 import AdminContext from "../../../../context/AdminContext";
 import ImagePreview from "./ImagePreview";
 import TextInput from "../../../reusable-ui/TextInput";
 import { getInputTextConfig } from "./inputTextConfig";
-import { FaHamburger } from "react-icons/fa";
 import HintMessage from "./HintMessage";
 
 const EditForm = () => {
-  const { productToEdit, inputRef } = useContext(AdminContext);
+  const { productToEdit, setProductToEdit, handleEdit } =
+    useContext(AdminContext);
   const inputTexts = getInputTextConfig(productToEdit);
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    const productBeingUpdated = { ...productToEdit, [name]: value };
+    setProductToEdit(productBeingUpdated);
+
+    handleEdit(productBeingUpdated);
+  };
   return (
     <EditFormStyled>
       {Object.keys(productToEdit).length === 0 ? (
@@ -23,18 +30,10 @@ const EditForm = () => {
             imageSource={productToEdit.imageSource}
             title={productToEdit.title}
           />
-          <TextInput
-            ref={inputRef}
-            Icone={<FaHamburger />}
-            value={productToEdit.title}
-            placeholder="Nom du produit (ex: Super Burger)"
-            onChange={() => {}}
-          />
-          {inputTexts
-            .filter((input) => input.id !== 0)
-            .map((input) => (
-              <TextInput key={input.id} {...input} onChange={() => {}} />
-            ))}
+
+          {inputTexts.map((input) => (
+            <TextInput key={input.id} {...input} onChange={handleChange} />
+          ))}
         </div>
       )}
     </EditFormStyled>
