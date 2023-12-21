@@ -6,6 +6,7 @@ import Main from "./Menu/Main";
 import AdminContext from "../../../context/AdminContext";
 import { fakeMenu2 } from "../../../data/fakeMenu";
 import { EMPTY_PRODUCT } from "../../../enums/product";
+import { deepClone } from "../../../utils/array";
 const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [isPanelOpened, setIsPanelOpened] = useState(false);
@@ -14,27 +15,37 @@ const OrderPage = () => {
   const [productToEdit, setProductToEdit] = useState({ EMPTY_PRODUCT });
   const inputRef = useRef();
 
-  const handleAdd = (newProduct) => {
-    const copyOfProducts = [...products];
-    const productsUpdated = [newProduct, ...copyOfProducts];
-    setProducts(productsUpdated);
-  };
-
-  const handleDelete = (id) => {
-    const copyOfProducts = [...products];
-    const productsUpdated = copyOfProducts.filter(
-      (product) => product.id !== id
-    );
-    setProducts(productsUpdated);
-  };
-
   const resetMenu = () => {
     setProducts(fakeMenu2);
   };
 
+  const handleAdd = (newProduct) => {
+    // copie du state
+    const copyOfProducts = deepClone(products);
+
+    // manipulation de la copie
+    const productsUpdated = [newProduct, ...copyOfProducts];
+
+    // update du state
+    setProducts(productsUpdated);
+  };
+
+  const handleDelete = (idOfProductToDelete) => {
+    // copie du state
+    const copyOfProducts = deepClone(products);
+
+    // manipulation de la copie
+    const productsUpdated = copyOfProducts.filter(
+      (product) => product.id !== idOfProductToDelete
+    );
+
+    // update du state
+    setProducts(productsUpdated);
+  };
+
   const handleEdit = (productBeingEdited) => {
     // copie du state (deep clone)
-    const copyOfProducts = JSON.parse(JSON.stringify(products));
+    const copyOfProducts = deepClone(products);
 
     // manip de la copie du state
     const indexOfProductToEdit = copyOfProducts.findIndex(
@@ -45,11 +56,6 @@ const OrderPage = () => {
 
     // update du state
     setProducts(copyOfProducts);
-  };
-  const focusOnInput = () => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
   };
 
   const adminContextValue = {
