@@ -12,12 +12,14 @@ const Product = ({
   hasDeleteButton,
   className,
   clickToEdit,
+  isHoverable,
   version = "normal",
 }) => {
   return (
     <ProductStyled
       className={className}
       onClick={clickToEdit}
+      isHoverable={isHoverable}
       version={version}
     >
       {hasDeleteButton && (
@@ -39,6 +41,8 @@ const Product = ({
   );
 };
 const ProductStyled = styled.div`
+  ${(props) => props.isHoverable && hoverableStyle};
+
   position: relative;
   display: flex;
   flex-direction: column;
@@ -106,6 +110,15 @@ const ProductStyled = styled.div`
     }
   }
   ${({ version }) => extraStyle[version]};
+`;
+const hoverableStyle = css`
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    box-shadow: 0 0 8px 0 rgb(255 154 35 / 100%);
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
+  }
 `;
 const extraStyleNormal = css`
   .delete-button {
