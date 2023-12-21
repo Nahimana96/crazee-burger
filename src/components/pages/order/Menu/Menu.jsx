@@ -40,16 +40,13 @@ const Menu = () => {
         products.map(({ id, title, imageSource, price }) => {
           return (
             <Product
-              className={
-                !isModeAdmin
-                  ? ""
-                  : productToEdit.id === id
-                  ? "selected-product"
-                  : "edit-mode"
-              }
+              className={isModeAdmin && "edit-mode"}
               onDelete={() => handleDelete(id)}
               key={id}
               title={title}
+              version={
+                productToEdit.id === id && isModeAdmin ? "selected" : "normal"
+              }
               imageSource={
                 isValidUrl(imageSource) ? imageSource : IMAGE_BY_DEFAULT
               }
@@ -83,40 +80,6 @@ const MenuStyled = styled.div`
       box-shadow: 0px 0px 8px 0px #ff9a23;
       transform: scale(1.03);
       transition: all 0.3s ease-in-out;
-    }
-  }
-  .selected-product {
-    background: #ffa01b !important;
-    transition: all 0.3s ease-in-out;
-    &:hover {
-      box-shadow: 0px 0px 8px 0px #ff9a23;
-      transform: scale(1.03);
-      transition: all 0.3s ease-in-out;
-    }
-    .delete-button {
-      :hover {
-        color: ${theme.colors.redSecondary} !important;
-      }
-      :active {
-        color: ${theme.colors.white};
-      }
-      svg {
-        color: ${theme.colors.white} !important;
-      }
-    }
-    .text-info .price-button {
-      .price {
-        color: ${theme.colors.white};
-      }
-      .button-ajouter {
-        background-color: ${theme.colors.white} !important;
-        color: ${theme.colors.primary};
-        &:hover {
-          border: 1px solid ${theme.colors.white};
-          color: ${theme.colors.white};
-          background-color: ${theme.colors.primary} !important;
-        }
-      }
     }
   }
   .menu-vide {
