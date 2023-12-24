@@ -48,6 +48,7 @@ const Menu = () => {
         products.map(({ id, title, imageSource, price }) => {
           return (
             <Product
+              className={isModeAdmin && "edit-mode"}
               onDelete={(event) => handleCardDelete(event, id)}
               key={id}
               title={title}
@@ -59,8 +60,7 @@ const Menu = () => {
               }
               leftDescription={formatPrice(price)}
               hasDeleteButton={isModeAdmin}
-              ishoverable={isModeAdmin}
-              clickToEdit={isModeAdmin ? () => handleClick(id) : null}
+              clickToEdit={isModeAdmin ? () => handleClick(id) : undefined}
             />
           );
         })
@@ -77,7 +77,15 @@ const MenuStyled = styled.div`
   height: 100%;
   overflow-y: auto;
   padding: 50px 50px 150px;
-
+  .edit-mode {
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      box-shadow: 0 0 8px 0 rgb(255 154 35 / 100%);
+      transform: scale(1.05);
+      transition: all 0.3s ease-in-out;
+    }
+  }
   &::-webkit-scrollbar {
     display: none;
   }
