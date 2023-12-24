@@ -19,5 +19,5 @@ export default createContext({
   handleEdit: () => {},
   productToEdit: {},
   setProductToEdit: () => {},
-  inputRef: {},
+  titleEditRef: {},
 });

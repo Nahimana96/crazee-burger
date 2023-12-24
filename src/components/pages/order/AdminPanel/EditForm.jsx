@@ -8,7 +8,7 @@ import { getInputTextConfig } from "./inputTextConfig";
 import HintMessage from "./HintMessage";
 
 const EditForm = () => {
-  const { productToEdit, setProductToEdit, handleEdit } =
+  const { productToEdit, setProductToEdit, handleEdit, titleEditRef } =
     useContext(AdminContext);
   const inputTexts = getInputTextConfig(productToEdit);
 
@@ -32,7 +32,12 @@ const EditForm = () => {
           />
 
           {inputTexts.map((input) => (
-            <TextInput key={input.id} {...input} onChange={handleChange} />
+            <TextInput
+              key={input.id}
+              {...input}
+              onChange={handleChange}
+              ref={input.name === "title" ? titleEditRef : null}
+            />
           ))}
 
           <div className="message">

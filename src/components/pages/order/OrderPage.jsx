@@ -13,12 +13,13 @@ const OrderPage = () => {
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [products, setProducts] = useState(fakeMenu2);
   const [productToEdit, setProductToEdit] = useState({ EMPTY_PRODUCT });
-  const inputRef = useRef();
+  const titleEditRef = useRef();
 
   const resetMenu = () => {
     setProducts(fakeMenu2);
   };
 
+  // gestionnaires du state
   const handleAdd = (newProduct) => {
     // copie du state
     const copyOfProducts = deepClone(products);
@@ -73,7 +74,7 @@ const OrderPage = () => {
     handleEdit,
     productToEdit,
     setProductToEdit,
-    inputRef,
+    titleEditRef,
   };
   return (
     <AdminContext.Provider value={adminContextValue}>

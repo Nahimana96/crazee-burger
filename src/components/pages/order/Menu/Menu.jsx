@@ -18,19 +18,27 @@ const Menu = () => {
     setIsPanelOpened,
     setCurrentTabSelected,
     productToEdit,
+    titleEditRef,
   } = useContext(AdminContext);
 
-  const handleClick = (idOfProductClicked) => {
-    const productInfo = products.find(
+  // gestionnaire d'événement
+  const handleClick = async (idOfProductClicked) => {
+    const productClickedOn = products.find(
       (product) => product.id == idOfProductClicked
     );
-    setProductToEdit(productInfo);
-    setIsPanelOpened(true);
-    setCurrentTabSelected("edit");
+    await setIsPanelOpened(true);
+    await setCurrentTabSelected("edit");
+    await setProductToEdit(productClickedOn);
+    titleEditRef.current && titleEditRef.current.focus();
+  };
+
+  const handleCardDelete = (event, id) => {
+    event.stopPropagation();
+    handleDelete(id);
   };
   return (
-    <MenuStyled className={products.length == 0 && "when-empty"}>
-      {products.length == 0 ? (
+    <MenuStyled className={products.length === 0 && "when-empty"}>
+      {products.length === 0 ? (
         !isModeAdmin ? (
           <EmptyMenuClient />
         ) : (
@@ -40,8 +48,7 @@ const Menu = () => {
         products.map(({ id, title, imageSource, price }) => {
           return (
             <Product
-              className={isModeAdmin && "edit-mode"}
-              onDelete={() => handleDelete(id)}
+              onDelete={(event) => handleCardDelete(event, id)}
               key={id}
               title={title}
               version={
@@ -52,7 +59,8 @@ const Menu = () => {
               }
               leftDescription={formatPrice(price)}
               hasDeleteButton={isModeAdmin}
-              clickToEdit={isModeAdmin ? () => handleClick(id) : () => {}}
+              ishoverable={isModeAdmin}
+              clickToEdit={isModeAdmin ? () => handleClick(id) : null}
             />
           );
         })
@@ -74,13 +82,6 @@ const MenuStyled = styled.div`
     display: none;
   }
   .edit-mode {
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    &:hover {
-      box-shadow: 0px 0px 8px 0px #ff9a23;
-      transform: scale(1.03);
-      transition: all 0.3s ease-in-out;
-    }
   }
   .menu-vide {
     align-items: center;
