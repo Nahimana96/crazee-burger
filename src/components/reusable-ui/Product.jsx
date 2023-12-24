@@ -34,14 +34,18 @@ const Product = ({
         <h1 className="title">{title}</h1>
         <div className="price-button">
           <p className="price">{leftDescription}</p>
-          <Button className="button-ajouter" label="Ajouter" />
+          <Button
+            className="button-ajouter"
+            label="Ajouter"
+            onClick={(e) => e.stopPropagation()}
+          />
         </div>
       </div>
     </ProductStyled>
   );
 };
 const ProductStyled = styled.div`
-  ${(props) => props.isHoverable && hoverableStyle};
+  ${({ isHoverable }) => isHoverable && hoverableStyle};
 
   position: relative;
   display: flex;
