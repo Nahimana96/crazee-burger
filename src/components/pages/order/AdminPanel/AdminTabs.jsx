@@ -3,7 +3,7 @@ import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import styled from "styled-components";
 import Tab from "../../../reusable-ui/Tab";
 import AdminContext from "../../../../context/AdminContext";
-import { getTabsConfig } from "./getTabsConfig";
+import { getTabsConfig } from "./tabsConfig";
 const AdminTabs = () => {
   const {
     isPanelOpened,
@@ -16,7 +16,7 @@ const AdminTabs = () => {
     setIsPanelOpened(true);
     setCurrentTabSelected(selectedTab);
   };
-  const tabs = getTabsConfig;
+  const tabs = getTabsConfig();
   return (
     <AdminTabsStyled>
       <Tab

@@ -4,7 +4,7 @@ import AddForm from "./AddForm";
 import EditForm from "./EditForm";
 import HintMessage from "./HintMessage";
 
-export const getTabsConfig = [
+export const getTabsConfig = (hasAlreadyBeenClicked) => [
   {
     index: "add",
     label: "Ajouter un produit",
@@ -15,9 +15,8 @@ export const getTabsConfig = [
     index: "edit",
     label: "Modifier un produit",
     icon: <MdModeEditOutline />,
-    content: <EditForm />,
+    content: hasAlreadyBeenClicked ? <HintMessage /> : <EditForm />,
   },
 ];
-
 export const getTabSelected = (tabs, currentTabSelected) =>
   tabs.find((tab) => tab.index === currentTabSelected);
