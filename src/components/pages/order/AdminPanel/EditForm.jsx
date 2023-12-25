@@ -6,6 +6,7 @@ import ImagePreview from "./ImagePreview";
 import TextInput from "../../../reusable-ui/TextInput";
 import { getInputTextConfig } from "./inputTextConfig";
 import HintMessage from "./HintMessage";
+import EditInfoMessage from "./EditInfoMessage";
 
 const EditForm = () => {
   const { productToEdit, setProductToEdit, handleEdit, titleEditRef } =
@@ -39,13 +40,7 @@ const EditForm = () => {
               ref={input.name === "title" ? titleEditRef : null}
             />
           ))}
-
-          <div className="message">
-            <p>
-              Cliquer sur un produit du menu pour le modifier{" "}
-              <span>en temps réel</span>
-            </p>
-          </div>
+          <EditInfoMessage />
         </div>
       )}
     </EditFormStyled>
@@ -75,15 +70,6 @@ const EditFormStyled = styled.div`
       }
       svg {
         color: ${theme.colors.greyBlue};
-      }
-    }
-    .message {
-      font-family: Open Sans;
-      font-size: ${theme.fonts.P0};
-      grid-column-start: 2;
-      color: ${theme.colors.primary};
-      span {
-        text-decoration: underline;
       }
     }
   }
