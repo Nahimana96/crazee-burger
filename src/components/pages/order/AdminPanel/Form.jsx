@@ -6,7 +6,7 @@ import { theme } from "../../../../theme";
 import { getInputTextConfig } from "./inputTextConfig";
 
 const Form = React.forwardRef(
-  ({ onSubmit, imageSource, onChange, product, QUELQUECHOSE }, ref) => {
+  ({ onSubmit, imageSource, onChange, product, children }, ref) => {
     const inputTexts = getInputTextConfig(product);
 
     return (
@@ -22,7 +22,7 @@ const Form = React.forwardRef(
           />
         ))}
 
-        <div className="submit-container">{QUELQUECHOSE}</div>
+        <div className="submit-container">{children}</div>
       </FormStyled>
     );
   }

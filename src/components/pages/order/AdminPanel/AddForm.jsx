@@ -2,8 +2,7 @@ import React, { useContext, useState } from "react";
 import AdminContext from "../../../../context/AdminContext";
 import { EMPTY_PRODUCT } from "../../../../enums/product";
 import Form from "./Form";
-import SubmitMessage from "./SubmitMessage";
-import Button from "../../../reusable-ui/Button";
+import SubmitButton from "./SubmitButton";
 
 const AddForm = () => {
   const [imageSource, setImageSource] = useState("");
@@ -52,13 +51,9 @@ const AddForm = () => {
       onChange={handleChange}
       imageSource={imageSource}
       product={newProduct}
-      QUELQUECHOSE={
-        <>
-          <Button label="Ajouter un nouveau produit" version="success" />
-          {isFormSubmitted && <SubmitMessage />}
-        </>
-      }
-    />
+    >
+      <SubmitButton isFormSubmitted={isFormSubmitted} />
+    </Form>
   );
 };
 
