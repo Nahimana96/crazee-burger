@@ -5,14 +5,14 @@ import { theme } from "../../../theme";
 import Main from "./Menu/Main";
 import AdminContext from "../../../context/AdminContext";
 import { fakeMenu2 } from "../../../data/fakeMenu";
-import { EMPTY_PRODUCT } from "../../../enums/product";
 import { deepClone } from "../../../utils/array";
+
 const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [isPanelOpened, setIsPanelOpened] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [products, setProducts] = useState(fakeMenu2);
-  const [productToEdit, setProductToEdit] = useState({ EMPTY_PRODUCT });
+  const [productToEdit, setProductToEdit] = useState({});
   const titleEditRef = useRef();
 
   const resetMenu = () => {
@@ -42,6 +42,7 @@ const OrderPage = () => {
 
     // update du state
     setProducts(productsUpdated);
+    productToEdit.id === idOfProductToDelete && setProductToEdit({});
   };
 
   const handleEdit = (productBeingEdited) => {

@@ -22,7 +22,7 @@ const EditForm = () => {
   };
   return (
     <EditFormStyled>
-      {productToEdit.id == undefined ? (
+      {Object.keys(productToEdit).length === 0 ? (
         <HintMessage />
       ) : (
         <div className="edit-form">

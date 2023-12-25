@@ -23,11 +23,11 @@ const Menu = () => {
 
   // gestionnaire d'événement
   const handleClick = async (idOfProductClicked) => {
-    const productClickedOn = products.find(
-      (product) => product.id == idOfProductClicked
-    );
     await setIsPanelOpened(true);
     await setCurrentTabSelected("edit");
+    const productClickedOn = products.find(
+      (product) => product.id === idOfProductClicked
+    );
     await setProductToEdit(productClickedOn);
     titleEditRef.current && titleEditRef.current.focus();
   };
@@ -35,6 +35,7 @@ const Menu = () => {
   const handleCardDelete = (event, id) => {
     event.stopPropagation();
     handleDelete(id);
+    titleEditRef.current && titleEditRef.current.focus();
   };
   return (
     <MenuStyled className={products.length === 0 && "when-empty"}>
@@ -60,7 +61,7 @@ const Menu = () => {
               }
               leftDescription={formatPrice(price)}
               hasDeleteButton={isModeAdmin}
-              clickToEdit={isModeAdmin ? () => handleClick(id) : undefined}
+              clickToEdit={isModeAdmin ? () => handleClick(id) : null}
             />
           );
         })
