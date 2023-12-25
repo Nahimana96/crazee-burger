@@ -22,7 +22,7 @@ const Form = React.forwardRef(
           />
         ))}
 
-        <div className="submit-container">{children}</div>
+        <div className="form-footer">{children}</div>
       </FormStyled>
     );
   }
@@ -52,7 +52,7 @@ const FormStyled = styled.form`
       color: ${theme.colors.greyBlue};
     }
   }
-  .submit-container {
+  .form-footer {
     display: flex;
     align-items: center;
     justify-content: flex-start;
