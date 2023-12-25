@@ -16,7 +16,6 @@ const EditInfoMessage = () => {
 const EditInfoMessageStyled = styled.div`
   font-family: Open Sans;
   font-size: ${theme.fonts.P0};
-  grid-column-start: 2;
   color: ${theme.colors.primary};
   span {
     text-decoration: underline;

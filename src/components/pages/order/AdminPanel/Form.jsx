@@ -2,35 +2,31 @@ import React from "react";
 import styled from "styled-components";
 import ImagePreview from "./ImagePreview";
 import TextInput from "../../../reusable-ui/TextInput";
-import Button from "../../../reusable-ui/Button";
-import SubmitMessage from "./SubmitMessage";
 import { theme } from "../../../../theme";
 import { getInputTextConfig } from "./inputTextConfig";
 
-const Form = ({
-  onSubmit,
-  imageSource,
-  onChange,
-  product,
-  isFormSubmitted,
-}) => {
-  const inputTexts = getInputTextConfig(product);
+const Form = React.forwardRef(
+  ({ onSubmit, imageSource, onChange, product, QUELQUECHOSE }, ref) => {
+    const inputTexts = getInputTextConfig(product);
 
-  return (
-    <FormStyled onSubmit={onSubmit}>
-      <ImagePreview imageSource={imageSource} title={product.title} />
+    return (
+      <FormStyled onSubmit={onSubmit}>
+        <ImagePreview imageSource={imageSource} title={product.title} />
 
-      {inputTexts.map((input) => (
-        <TextInput key={input.id} {...input} onChange={onChange} />
-      ))}
+        {inputTexts.map((input) => (
+          <TextInput
+            key={input.id}
+            {...input}
+            onChange={onChange}
+            ref={ref && input.name === "title" ? ref : null}
+          />
+        ))}
 
-      <div className="submit-container">
-        <Button label="Ajouter un nouveau produit" version="success" />
-        {isFormSubmitted && <SubmitMessage />}
-      </div>
-    </FormStyled>
-  );
-};
+        <div className="submit-container">{QUELQUECHOSE}</div>
+      </FormStyled>
+    );
+  }
+);
 
 const FormStyled = styled.form`
   display: grid;

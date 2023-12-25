@@ -2,16 +2,12 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { theme } from "../../../../theme";
 import AdminContext from "../../../../context/AdminContext";
-import ImagePreview from "./ImagePreview";
-import TextInput from "../../../reusable-ui/TextInput";
-import { getInputTextConfig } from "./inputTextConfig";
-import HintMessage from "./HintMessage";
+import Form from "./Form";
 import EditInfoMessage from "./EditInfoMessage";
 
 const EditForm = () => {
   const { productToEdit, setProductToEdit, handleEdit, titleEditRef } =
     useContext(AdminContext);
-  const inputTexts = getInputTextConfig(productToEdit);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,22 +18,13 @@ const EditForm = () => {
     handleEdit(productBeingUpdated);
   };
   return (
-    <EditFormStyled>
-      <ImagePreview
-        imageSource={productToEdit.imageSource}
-        title={productToEdit.title}
-      />
-
-      {inputTexts.map((input) => (
-        <TextInput
-          key={input.id}
-          {...input}
-          onChange={handleChange}
-          ref={input.name === "title" ? titleEditRef : null}
-        />
-      ))}
-      <EditInfoMessage />
-    </EditFormStyled>
+    <Form
+      product={productToEdit}
+      imageSource={productToEdit.imageSource}
+      onChange={handleChange}
+      ref={titleEditRef}
+      QUELQUECHOSE={<EditInfoMessage />}
+    />
   );
 };
 
