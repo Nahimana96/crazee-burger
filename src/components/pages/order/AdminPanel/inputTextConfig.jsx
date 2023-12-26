@@ -2,13 +2,13 @@ import { FaHamburger } from "react-icons/fa";
 import { BsFillCameraFill } from "react-icons/bs";
 import { MdOutlineEuroSymbol } from "react-icons/md";
 
-export const getInputTextCOnfig = (newProduct) => [
+export const getInputTextConfig = (product) => [
   {
     id: 0,
     name: "title",
     Icone: <FaHamburger />,
     placeholder: "Nom du produit (ex: Super Burger)",
-    value: newProduct.title,
+    value: product.title,
   },
   {
     id: 1,
@@ -16,13 +16,13 @@ export const getInputTextCOnfig = (newProduct) => [
     Icone: <BsFillCameraFill />,
     placeholder:
       "Lien:URL d'une image (ex: https://la-photo-de-mon-produit.png)",
-    value: newProduct.imageSource,
+    value: product.imageSource,
   },
   {
     id: 2,
     name: "price",
     Icone: <MdOutlineEuroSymbol />,
     placeholder: "Prix",
-    value: newProduct.price,
+    value: product.price,
   },
 ];
