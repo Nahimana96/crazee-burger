@@ -4,6 +4,7 @@ import { theme } from "../../../../theme";
 import Header from "../../../reusable-ui/Header";
 import Total from "./Total";
 import { formatPrice } from "../../../../utils/maths.jsx";
+import Footer from "./Footer.jsx";
 const Basket = () => {
   return (
     <BasketStyled>
@@ -11,9 +12,7 @@ const Basket = () => {
       <div className="basket-content">
         <span>Votre commande est vide</span>
       </div>
-      <Header>
-        <span>codé avec ❤️ et react.Js</span>
-      </Header>
+      <Footer />
     </BasketStyled>
   );
 };
