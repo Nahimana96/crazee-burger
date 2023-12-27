@@ -46,16 +46,16 @@ const Navbar = () => {
   );
 };
 const NavbarStyled = styled.div`
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-end: 2;
   background-color: ${theme.colors.white};
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-top-left-radius: ${theme.borderRadius.extraRound};
   border-top-right-radius: ${theme.borderRadius.extraRound};
-  margin: 0 auto;
-  margin-top: 24px;
   width: 100%;
-  max-width: 1400px;
   a {
     text-decoration: none;
     margin-left: 20px;

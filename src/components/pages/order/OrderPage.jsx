@@ -6,6 +6,7 @@ import Main from "./Menu/Main";
 import AdminContext from "../../../context/AdminContext";
 import { fakeMenu2 } from "../../../data/fakeMenu";
 import { deepClone } from "../../../utils/array";
+import Basket from "./Basket/Basket";
 
 const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
@@ -82,6 +83,7 @@ const OrderPage = () => {
       <OrderPageStyled>
         <Navbar />
         <Main />
+        <Basket />
       </OrderPageStyled>
     </AdminContext.Provider>
   );
@@ -89,8 +91,12 @@ const OrderPage = () => {
 
 const OrderPageStyled = styled.div`
   background-color: ${theme.colors.primary};
-  height: 100vh;
+  max-width: 1400px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 25px 0;
   display: grid;
-  grid-template-rows: 12% 88%;
+  grid-template-rows: 10% 90%;
+  grid-template-columns: 25% 75%;
 `;
 export default OrderPage;

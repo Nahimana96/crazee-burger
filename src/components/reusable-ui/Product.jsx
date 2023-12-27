@@ -48,10 +48,12 @@ const ProductStyled = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 240px;
   height: 330px;
   padding: 50px 20px 30px 20px;
   box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
   border-radius: ${theme.borderRadius.extraRound};
+  place-self: center;
 
   .delete-button {
     width: 30px;
