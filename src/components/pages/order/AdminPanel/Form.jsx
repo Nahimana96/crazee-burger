@@ -30,7 +30,8 @@ const Form = React.forwardRef(
 
 const FormStyled = styled.form`
   display: grid;
-  grid-template-columns: 210px 650px;
+  width: 660px;
+  grid-template-columns: 24% 72%;
   grid-template-rows: repeat(4, 40px);
   column-gap: 20px;
   row-gap: 8px;
