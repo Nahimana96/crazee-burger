@@ -40,7 +40,7 @@ const AdminPanelStyled = styled.div`
     height: 250px;
     left: 0;
     background-color: ${theme.colors.background_white};
-    border-radius: 0px 0px 15px 15px;
+    border-bottom-right-radius: 15px;
     box-shadow: 0px -6px 8px -2px rgba(0, 0, 0, 0.1);
     border-top: 1px solid ${theme.colors.greyLight};
   }
