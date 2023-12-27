@@ -6,13 +6,13 @@ import { theme } from "../../../../theme";
 const Footer = () => {
   return (
     <Header>
-      <HeaderStyled>
+      <FooterStyled>
         <span>codé avec ❤️ et react.Js</span>
-      </HeaderStyled>
+      </FooterStyled>
     </Header>
   );
 };
-const HeaderStyled = styled.div`
+const FooterStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
