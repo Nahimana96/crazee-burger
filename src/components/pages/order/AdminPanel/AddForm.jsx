@@ -3,13 +3,13 @@ import AdminContext from "../../../../context/AdminContext";
 import { EMPTY_PRODUCT } from "../../../../enums/product";
 import Form from "./Form";
 import SubmitButton from "./SubmitButton";
+import { useSuccessMessage } from "../../../../hooks/useSuccessMessage";
 
 const AddForm = () => {
   const [imageSource, setImageSource] = useState("");
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const { handleAdd } = useContext(AdminContext);
-
+  const { isFormSubmitted, displaySuccessMessage } = useSuccessMessage();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewProduct({
@@ -33,16 +33,6 @@ const AddForm = () => {
     // clear imageSource
     setImageSource("");
     displaySuccessMessage();
-  };
-
-  const displaySuccessMessage = () => {
-    // set isFormSubmitted to true to show success message
-    setIsFormSubmitted(true);
-
-    // set isFormSubmitted to false after 2s to hide success message
-    setTimeout(() => {
-      setIsFormSubmitted(false);
-    }, 2000);
   };
 
   return (
