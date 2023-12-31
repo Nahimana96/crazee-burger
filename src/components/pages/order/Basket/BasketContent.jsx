@@ -33,10 +33,16 @@ const BasketContentStyled = styled.div`
   height: 80%;
   background-color: ${theme.colors.background_white};
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2) inset;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
   article {
     display: flex;
     justify-content: space-between;
     gap: 10px;
+    padding-bottom: 40px;
   }
   span {
     color: ${theme.colors.greyBlue};
