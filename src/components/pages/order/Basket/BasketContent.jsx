@@ -10,9 +10,16 @@ const BasketContent = () => {
       {productsInBasket.length === 0 ? (
         <span>Votre commande est vide</span>
       ) : (
-        productsInBasket.map((product) => (
-          <li key={product.id}>{product.title}</li>
-        ))
+        productsInBasket.map(
+          ({ title, imageSource, price, quantity }, index) => (
+            <article key={index}>
+              <span className="title">{title}</span>
+              <span>{quantity}</span>
+              {/* <img src={imageSource} alt={title} /> */}
+              <span className="price">{price}</span>
+            </article>
+          )
+        )
       )}
     </BasketContentStyled>
   );
@@ -26,6 +33,11 @@ const BasketContentStyled = styled.div`
   height: 80%;
   background-color: ${theme.colors.background_white};
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2) inset;
+  article {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
   span {
     color: ${theme.colors.greyBlue};
     font-family: "Amatic SC", cursive;

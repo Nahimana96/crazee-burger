@@ -20,10 +20,30 @@ const OrderPage = () => {
 
   const handleAddToBasket = (productToAdd) => {
     const copyOfBakset = deepClone(productsInBasket);
-    const basketUpdated = [productToAdd, ...copyOfBakset];
+    const isProductInBasket = copyOfBakset.some(
+      (product) => product.id === productToAdd.id
+    );
 
-    setProductsInBasket(basketUpdated);
-    console.log(productsInBasket);
+    if (isProductInBasket) {
+      // Si le produit existe,
+      // créer un nouveau tableau avec le produit mis à jour
+      const updateBasket = copyOfBakset.map((product) => {
+        if (product.title === productToAdd.title) {
+          // Augmenter la quantité du produit de 1
+          return { ...product, quantity: product.quantity + 1 };
+        } else {
+          // Garder les autres produits inchangés
+          return product;
+        }
+      });
+      // Mettre à jour l'état du panier avec le nouveau tableau
+      setProductsInBasket(updateBasket);
+    } else {
+      // Si le produit n'existe pas,
+      // ajouter-le au tableau avec une quantité de 1
+      const basketUpdated = [{ ...productToAdd, quantity: 1 }, ...copyOfBakset];
+      setProductsInBasket(basketUpdated);
+    }
   };
   const adminContextValue = {
     isModeAdmin,
