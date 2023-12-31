@@ -94,7 +94,7 @@ const ProductStyled = styled.div`
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      width: 240px;
+      width: 200px;
       font-family: "Amatic SC", cursive;
       font-weight: ${theme.weights.bold};
       font-size: ${theme.fonts.P4};
