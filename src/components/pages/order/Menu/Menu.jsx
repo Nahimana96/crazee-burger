@@ -7,6 +7,7 @@ import { theme } from "../../../../theme";
 import EmptyMenuAdmin from "./EmptyMenuAdmin.jsx";
 import EmptyMenuClient from "./EmptyMenuClient.jsx";
 import { isValidUrl } from "../../../../utils/ValidUrl.jsx";
+import { deepClone } from "../../../../utils/array.jsx";
 
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 const Menu = () => {
@@ -19,10 +20,11 @@ const Menu = () => {
     setCurrentTabSelected,
     productToEdit,
     titleEditRef,
+    handleAddToBasket,
   } = useContext(AdminContext);
 
   // gestionnaire d'événement
-  const handleClick = async (idOfProductClicked) => {
+  const handleCardToEdit = async (idOfProductClicked) => {
     await setIsPanelOpened(true);
     await setCurrentTabSelected("edit");
     const productClickedOn = products.find(
@@ -37,6 +39,12 @@ const Menu = () => {
     handleDelete(id);
     productToEdit.id === id && setProductToEdit({});
     titleEditRef.current && titleEditRef.current.focus();
+  };
+
+  const handleCardToAdd = async (event, id) => {
+    event.stopPropagation();
+    const productToAdd = await products.find((product) => product.id === id);
+    handleAddToBasket(productToAdd);
   };
   return (
     <MenuStyled className={products.length === 0 && "when-empty"}>
@@ -62,7 +70,8 @@ const Menu = () => {
               }
               leftDescription={formatPrice(price)}
               hasDeleteButton={isModeAdmin}
-              clickToEdit={isModeAdmin ? () => handleClick(id) : null}
+              clickToEdit={isModeAdmin ? () => handleCardToEdit(id) : null}
+              clickToAdd={(event) => handleCardToAdd(event, id)}
             />
           );
         })

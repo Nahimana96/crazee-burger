@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { theme } from "../../../../theme";
 import styled from "styled-components";
+import AdminContext from "../../../../context/AdminContext";
 
 const BasketContent = () => {
+  const { productsInBasket } = useContext(AdminContext);
   return (
     <BasketContentStyled>
-      <span>Votre commande est vide</span>
+      {productsInBasket.length === 0 ? (
+        <span>Votre commande est vide</span>
+      ) : (
+        productsInBasket.map((product) => (
+          <li key={product.id}>{product.title}</li>
+        ))
+      )}
     </BasketContentStyled>
   );
 };
@@ -13,6 +21,7 @@ const BasketContent = () => {
 const BasketContentStyled = styled.div`
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
   height: 80%;
   background-color: ${theme.colors.background_white};

@@ -19,4 +19,6 @@ export default createContext({
   productToEdit: {},
   setProductToEdit: () => {},
   titleEditRef: {},
+  productsInBasket: [],
+  handleAddToBasket: () => {},
 });

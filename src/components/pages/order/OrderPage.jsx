@@ -6,6 +6,7 @@ import Main from "./Menu/Main";
 import AdminContext from "../../../context/AdminContext";
 import Basket from "./Basket/Basket";
 import { useMenuProducts } from "../../../hooks/useMenuProducts";
+import { deepClone } from "../../../utils/array";
 
 const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
@@ -13,9 +14,17 @@ const OrderPage = () => {
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [productToEdit, setProductToEdit] = useState({});
   const titleEditRef = useRef();
+  const [productsInBasket, setProductsInBasket] = useState([]);
   const { products, resetMenu, handleAdd, handleEdit, handleDelete } =
     useMenuProducts();
 
+  const handleAddToBasket = (productToAdd) => {
+    const copyOfBakset = deepClone(productsInBasket);
+    const basketUpdated = [productToAdd, ...copyOfBakset];
+
+    setProductsInBasket(basketUpdated);
+    console.log(productsInBasket);
+  };
   const adminContextValue = {
     isModeAdmin,
     setIsModeAdmin,
@@ -31,7 +40,10 @@ const OrderPage = () => {
     productToEdit,
     setProductToEdit,
     titleEditRef,
+    productsInBasket,
+    handleAddToBasket,
   };
+
   return (
     <AdminContext.Provider value={adminContextValue}>
       <OrderPageStyled>

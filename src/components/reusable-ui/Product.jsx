@@ -12,6 +12,7 @@ const Product = ({
   hasDeleteButton,
   className,
   clickToEdit,
+  clickToAdd,
   version = "normal",
 }) => {
   return (
@@ -35,7 +36,7 @@ const Product = ({
           <Button
             className="button-ajouter"
             label="Ajouter"
-            onClick={(e) => e.stopPropagation()}
+            onClick={clickToAdd}
           />
         </div>
       </div>
