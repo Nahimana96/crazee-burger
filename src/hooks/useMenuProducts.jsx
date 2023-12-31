@@ -31,7 +31,6 @@ export const useMenuProducts = () => {
 
     // update du state
     setProducts(productsUpdated);
-    productToEdit.id === idOfProductToDelete && setProductToEdit({});
   };
 
   const handleEdit = (productBeingEdited) => {

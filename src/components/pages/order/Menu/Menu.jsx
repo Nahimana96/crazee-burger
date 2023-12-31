@@ -35,6 +35,7 @@ const Menu = () => {
   const handleCardDelete = (event, id) => {
     event.stopPropagation();
     handleDelete(id);
+    productToEdit.id === id && setProductToEdit({});
     titleEditRef.current && titleEditRef.current.focus();
   };
   return (
