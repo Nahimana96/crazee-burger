@@ -4,3 +4,11 @@
   box-sizing: border-box;
   font-family: "Open Sans", sans-serif;
 }
+
+body {
+  height: 100vh;
+  background-color: #ffa01b;
+}
+#root {
+  height: 100%;
+}

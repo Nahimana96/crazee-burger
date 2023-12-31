@@ -46,6 +46,7 @@ const TextInputStyled = styled.div`
     }
     &::placeholder {
       color: ${theme.colors.greyExtraLight};
+      font-size: 13px;
     }
   }
 `;

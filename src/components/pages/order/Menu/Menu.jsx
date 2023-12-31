@@ -71,13 +71,14 @@ const Menu = () => {
 };
 const MenuStyled = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  column-gap: 70px;
+  grid-template-columns: repeat(3, 1fr);
+  /* grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); */
   row-gap: 60px;
   width: 100%;
   height: 100%;
   overflow-y: auto;
-  padding: 50px 50px 150px;
+  padding: 50px;
+  place-self: center;
   .edit-mode {
     cursor: pointer;
     transition: all 0.3s ease-in-out;

@@ -18,11 +18,11 @@ const MainStyled = styled.div`
   position: relative;
   background-color: ${theme.colors.background_white};
   box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
-  border-radius: 0px 0px 15px 15px;
-  margin: 0 auto;
-  margin-bottom: 24px;
+  border-bottom-right-radius: 15px;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
   width: 100%;
-  max-width: 1400px;
   overflow-y: hidden;
   .when-empty {
     display: flex;

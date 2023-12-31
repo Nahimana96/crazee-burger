@@ -35,12 +35,12 @@ const AdminPanelStyled = styled.div`
   }
   .panel-container {
     position: absolute;
-    padding: 30px 70px;
+    padding: 30px 54px;
     width: 100%;
     height: 250px;
     left: 0;
     background-color: ${theme.colors.background_white};
-    border-radius: 0px 0px 15px 15px;
+    border-bottom-right-radius: 15px;
     box-shadow: 0px -6px 8px -2px rgba(0, 0, 0, 0.1);
     border-top: 1px solid ${theme.colors.greyLight};
   }
