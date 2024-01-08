@@ -26,7 +26,12 @@ const BasketContent = () => {
                   />
                 </div>
                 <div className="title_and_price_container">
-                  <span className="title">{title ? title : "  "}</span>
+                  <span
+                    className="title"
+                    style={title ? { opacity: 1 } : { opacity: 0 }}
+                  >
+                    {title ? title : "empty"}
+                  </span>
                   <span className="price">
                     {price ? formatPrice(price) : formatPrice(0)}
                   </span>
@@ -81,6 +86,7 @@ const BasketContentStyled = styled.div`
       box-shadow: -4px 4px 15px 0px rgba(0, 0, 0, 0.2);
       border-radius: 5px;
       overflow: hidden;
+      user-select: none;
       &:hover {
         .delete_button {
           transform: translate(0%);
@@ -101,6 +107,7 @@ const BasketContentStyled = styled.div`
         display: flex;
         flex-direction: column;
         .title {
+          display: block;
           white-space: nowrap;
           font-family: "Amatic SC";
           font-weight: ${theme.weights.bold};
