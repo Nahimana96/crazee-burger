@@ -6,7 +6,6 @@ import { formatPrice } from "../../../../utils/maths.jsx";
 import { theme } from "../../../../theme";
 import EmptyMenuAdmin from "./EmptyMenuAdmin.jsx";
 import EmptyMenuClient from "./EmptyMenuClient.jsx";
-import { isValidUrl } from "../../../../utils/ValidUrl.jsx";
 
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 const Menu = () => {
@@ -66,9 +65,7 @@ const Menu = () => {
               version={
                 productToEdit.id === id && isModeAdmin ? "selected" : "normal"
               }
-              imageSource={
-                isValidUrl(imageSource) ? imageSource : IMAGE_BY_DEFAULT
-              }
+              imageSource={imageSource ? imageSource : IMAGE_BY_DEFAULT}
               leftDescription={formatPrice(price)}
               hasDeleteButton={isModeAdmin}
               clickToEdit={isModeAdmin ? () => handleCardToEdit(id) : null}

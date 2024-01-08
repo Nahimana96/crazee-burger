@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { theme } from "../../../../theme";
-import { isValidUrl } from "../../../../utils/ValidUrl";
+
 const ImagePreview = ({ imageSource, title }) => {
   return (
     <StyledImagePreview className="image-preview">
-      {imageSource && isValidUrl(imageSource) ? (
+      {imageSource ? (
         <img src={imageSource} alt={title} />
       ) : (
         <div className="image-preview">Aucune image</div>
