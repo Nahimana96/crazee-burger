@@ -45,6 +45,14 @@ const OrderPage = () => {
       setProductsInBasket(basketUpdated);
     }
   };
+
+  const handleDeleteBasket = (id) => {
+    const copyOfProductsInbasket = deepClone(productsInBasket);
+    const basketUpdate = copyOfProductsInbasket.filter(
+      (product) => product.id !== id
+    );
+    setProductsInBasket(basketUpdate);
+  };
   const adminContextValue = {
     isModeAdmin,
     setIsModeAdmin,
@@ -62,6 +70,7 @@ const OrderPage = () => {
     titleEditRef,
     productsInBasket,
     handleAddToBasket,
+    handleDeleteBasket,
   };
 
   return (

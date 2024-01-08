@@ -7,7 +7,6 @@ import { theme } from "../../../../theme";
 import EmptyMenuAdmin from "./EmptyMenuAdmin.jsx";
 import EmptyMenuClient from "./EmptyMenuClient.jsx";
 import { isValidUrl } from "../../../../utils/ValidUrl.jsx";
-import { deepClone } from "../../../../utils/array.jsx";
 
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 const Menu = () => {
@@ -21,6 +20,7 @@ const Menu = () => {
     productToEdit,
     titleEditRef,
     handleAddToBasket,
+    handleDeleteBasket,
   } = useContext(AdminContext);
 
   // gestionnaire d'événement
@@ -37,6 +37,7 @@ const Menu = () => {
   const handleCardDelete = (event, id) => {
     event.stopPropagation();
     handleDelete(id);
+    handleDeleteBasket(id);
     productToEdit.id === id && setProductToEdit({});
     titleEditRef.current && titleEditRef.current.focus();
   };
