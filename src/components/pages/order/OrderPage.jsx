@@ -28,7 +28,7 @@ const OrderPage = () => {
       // Si le produit existe,
       // créer un nouveau tableau avec le produit mis à jour
       const updateBasket = copyOfBakset.map((product) => {
-        if (product.title === productToAdd.title) {
+        if (product.id === productToAdd.id) {
           // Augmenter la quantité du produit de 1
           return { ...product, quantity: product.quantity + 1 };
         } else {

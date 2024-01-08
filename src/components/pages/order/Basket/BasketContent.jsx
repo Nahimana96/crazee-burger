@@ -4,7 +4,6 @@ import styled from "styled-components";
 import AdminContext from "../../../../context/AdminContext";
 import { formatPrice } from "../../../../utils/maths";
 import { MdDeleteForever } from "react-icons/md";
-import { deepClone } from "../../../../utils/array";
 
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 const BasketContent = () => {
