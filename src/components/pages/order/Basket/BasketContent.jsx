@@ -123,7 +123,7 @@ const BasketContentStyled = styled.div`
         align-items: center;
         width: 76px;
         height: 100%;
-        background-color: red;
+        background-color: ${theme.colors.red};
         color: white;
         position: absolute;
         right: 0;
